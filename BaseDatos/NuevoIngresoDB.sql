@@ -5,7 +5,7 @@ use NuevoIngresoESCOM;
 
 create table IdentidadEstudiante(
 	Id_usuario  int(3) not null auto_increment primary key, /*Prefieren la BOLETA o CURP como PK?*/
-	NoBoleta    varchar(11) not null,
+	NoBoleta    varchar(10) not null,
 	Nombre      varchar(30),
 	Apat        varchar(30),
 	Amat        varchar(30),
@@ -21,7 +21,7 @@ create table ContactoEstudiante(
     Colonia           varchar(50),
     Alcaldia          varchar(50),
     CodigoPostal      int(5),
-    Telefono          varchar(20),
+    Telefono          int(10),
     CorreoElectronico varchar(50),
     foreign key (Id_usuario) references IdentidadEstudiante (Id_usuario)
 );
