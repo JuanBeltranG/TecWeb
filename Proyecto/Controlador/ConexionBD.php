@@ -1,5 +1,5 @@
 <?php
-	include("Controlador/Alumno.php");
+	include("../../Modelo/Alumno.php");
     class Conexion {
         public $url = "localhost";
         public $user = "root";
@@ -13,10 +13,25 @@
         }
 
         public function registrarAlumno($alumno){        
-            $query = "CALL ProcedureAlumno (1, '$alumno->boleta', '$alumno->nombre', '$alumno->paterno', '$alumno->materno',
-                 '$alumno->email', '$alumno->nacimiento', '$alumno->genero', '$alumno->curp', '$alumno->calle', 
-                 '$alumno->colonia', '$alumno->cp', '$alumno->tel', '$alumno->promedio', '$alumno->opcion', 
-                 $alumno->procedencia, '$alumno->otra', $alumno->estado)";
+            $query = "CALL AltaAlumno (
+                $alumno->NoBoleta,
+                $alumno->Nombre,
+                $alumno->ApellidoP,
+                $alumno->ApellidoM,
+                $alumno->FNacimiento,
+                $alumno->Genero,
+                $alumno->CURP,
+                $alumno->Calle,
+                $alumno->Colonia,
+                $alumno->CodigoPostal,
+                $alumno->Telefono,
+                $alumno->CURP,
+                $alumno->Email,
+                $alumno->Escuela,
+                $alumno->Entidad,
+                $alumno->Promedio,
+                $alumno->NumeroOp
+            )";
             $this->mysqli->query($query);
         } 
 
