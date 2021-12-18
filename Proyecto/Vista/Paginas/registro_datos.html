@@ -16,13 +16,13 @@
         <fieldset>
             <legend>Identidad</legend>
 
-            <input type="text" name="boleta" id="boleta" placeholder="No. de boleta" required>
+            <input type="text" name="boleta" id="boleta" placeholder="No. de boleta" minlength="10" maxlength="10" onkeyup="alfanumerico('boleta')" required>
             
-            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" maxlength="30" onkeyup="soloLetras('nombre')" required>
             
-            <input type="text" name="apellido_p" id="apellido_p" placeholder="Apellido Paterno" required>
+            <input type="text" name="apellido_p" id="apellido_p" placeholder="Apellido Paterno" maxlength="30" onkeyup="soloLetras('apellido_p')" required>
             
-            <input type="text" name="apellido_m" id="apellido_m" placeholder="Apellido Materno" required>
+            <input type="text" name="apellido_m" id="apellido_m" placeholder="Apellido Materno" maxlength="30" onkeyup="soloLetras('apellido_m')" required>
             
             <input type="date" name="fecha" id="fecha" max="2004-12-31" required>
             
@@ -32,26 +32,26 @@
                 <option value="Femenino">Femenino</option>
             </select>
             
-            <input type="text" name="curp" id="curp" placeholder="CURP" required>
+            <input type="text" name="curp" id="curp" placeholder="CURP" minlength="18" maxlength="18" onkeyup="alfanumerico('curp')" required>
 
         </fieldset>
         <fieldset>
             <legend>Contacto</legend>
 
-            <input type="text" id="calle" name="calle" placeholder="Calle y numero" required>
+            <input type="text" id="calle" name="calle" placeholder="Calle y numero" maxlength="50" onkeyup="alfanumericoYEspacios('calle')" required>
 
-            <input type="text" id="colonia" name="colonia" placeholder="Colonia" required>
+            <input type="text" id="colonia" name="colonia" placeholder="Colonia" maxlength="50" onkeyup="alfanumericoYEspacios('colonia')" required>
 
             <select name="alcaldia" id="alcaldia" required>
                 <option value="Ninguna" selected disabled>Seleccione una alcaldia</option>
                 <option value="Iztapalapa">Iztapalapa</option>
             </select>
 
-            <input type="text" id="cp" name="cp" placeholder="Codigo Postal" required>
+            <input type="text" id="cp" name="cp" placeholder="Codigo Postal" minlength="5" maxlength="5" onkeyup="soloDigitos('cp')" required>
 
-            <input type="text" id="telefono" name="telefono" placeholder="Telefono o Celular" required>
+            <input type="text" id="telefono" name="telefono" placeholder="Telefono o Celular" minlength="10" maxlength="10" onkeyup="soloDigitos('telefono')" required>
 
-            <input type="email" id="correo" name="correo" placeholder="Correo Electronico" required>
+            <input type="email" id="correo" name="correo" placeholder="Correo Electronico" maxlength="50" required>
 
         </fieldset>
         <fieldset>
@@ -68,14 +68,14 @@
                 <option value="CDMX">CDMX</option>
             </select>
 
-            <input type="text" name="nombre_escuela" id="nombre_escuela" placeholder="Nombre de la escuela" disabled>
+            <input type="text" name="nombre_escuela" id="nombre_escuela" placeholder="Nombre de la escuela" maxlength="50" onkeyup="alfanumericoYEspaciosYPuntos('nombre_escuela')" disabled>
 
             <input type="number" name="promedio" id="promedio" placeholder="Promedio" step="0.01" min="0" max="10" required>
 
-            <input type="checkbox" name="primera_opcion" id="primera_opcion" value="1"> Escom fue mi primera opcion
-            <input type="checkbox" name="segunda_opcion" id="segunda_opcion" value="2"> Escom fue mi segunda opcion
-            <input type="checkbox" name="tercera_opcion" id="tercera_opcion" value="3"> Escom fue mi tercera opcion
-            <input type="checkbox" name="cuarta_opcion" id="cuarta_opcion" value="4"> Escom fue mi cuarta opcion
+            <input type="checkbox" name="primera_opcion" id="primera_opcion" value="1"> Escom fue mi primera opción
+            <input type="checkbox" name="segunda_opcion" id="segunda_opcion" value="2"> Escom fue mi segunda opción
+            <input type="checkbox" name="tercera_opcion" id="tercera_opcion" value="3"> Escom fue mi tercera opción
+            <input type="checkbox" name="cuarta_opcion" id="cuarta_opcion" value="4"> Escom fue mi cuarta opción
         </fieldset>
         <input type="hidden" id="EscomOpcion" name="EscomOpcion">
         <input type="hidden" id="EscuelaProcedencia" name="EscuelaProcedencia">
