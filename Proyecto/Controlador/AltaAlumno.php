@@ -19,10 +19,10 @@ include("ConexionBD.php");
     $alumnor->Telefono = $_POST["telefono"];
     $alumnor->Email = $_POST["correo"];
     //Procedencia
-    $alumnor->Escuela = $_POST["escuela_procedencia"];
+    $alumnor->Escuela = $_POST["EscuelaProcedencia"];
     $alumnor->Entidad = $_POST["entidad_procedencia"];
     $alumnor->Promedio = $_POST["promedio"];
-    $alumnor->NumeroOp = $_POST["primera_opcion"];
+    $alumnor->NumeroOp = $_POST["EscomOpcion"];
 
     $conexion->registrarAlumno($alumnor);
 	

@@ -132,21 +132,31 @@ function validarRegistroDatos(){
             document.getElementById("nombre_escuela").focus();
             return flag;
         }
+        else{
+            document.getElementById("EscuelaProcedencia").value = document.getElementById("nombre_escuela").value;
+        }
+    }
+    else{
+        document.getElementById("EscuelaProcedencia").value = document.getElementById("escuela_procedencia").value;
     }
 
     //Validad Escom opcion
     var op1 = 0, op2 = 0, op3 = 0, op4 = 0;
     if(document.getElementById("primera_opcion").checked){
         op1 = 1;
+        document.getElementById("EscomOpcion").value = document.getElementById("primera_opcion").value;
     }
     if(document.getElementById("segunda_opcion").checked){
         op2 = 1;
+        document.getElementById("EscomOpcion").value = document.getElementById("segunda_opcion").value;
     }
     if(document.getElementById("tercera_opcion").checked){
         op3 = 1;
+        document.getElementById("EscomOpcion").value = document.getElementById("tercera_opcion").value;
     }
     if(document.getElementById("cuarta_opcion").checked){
         op4 = 1;
+        document.getElementById("EscomOpcion").value = document.getElementById("cuarta_opcion").value;
     }
     if((op1 + op2 + op3 + op4) != 1){
         alert("Debes de indicar que opcion fue ESCOM marcando solo una casilla");
