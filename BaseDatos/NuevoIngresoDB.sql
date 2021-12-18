@@ -236,9 +236,43 @@ delimiter **
 create procedure ConsultaAlumnos( in boleta varchar(10))
 begin
  
-select * from IdentidadAlumno where NoBoleta = boleta;
+/*select * from IdentidadAlumno where NoBoleta = boleta;*/
+
+select * from IdentidadAlumno as IA
+inner join ContactoAlumno as CA
+on IA.Id_Alumno = CA.Id_Alumno
+inner join ProcedenciaAlumno as PA
+on IA.Id_Alumno= PA.Id_Alumno
+where IA.NoBoleta = boleta;
 
 end**
+
+call ConsultaAlumnos('2020630244');
+
+
+
+use NuevoIngresoESCOM;
+drop procedure if exists ConsultaAgendaAlumno;
+delimiter **
+create procedure ConsultaAgendaAlumno( in boleta varchar(10))
+begin
+ 
+
+declare idBusqueda int(3);
+
+set idBusqueda = (select Id_Alumno from IdentidadAlumno where NoBoleta = boleta);
+
+select * from AgendaAlumno as AgAl
+inner join Agenda as Ag
+on AgAl.Id_Agenda = Ag.Id_Agenda
+inner join Laboratorios as Lab
+on Ag.Id_Laboratorio = Lab.Id_Laboratorio
+where AgAl.Id_Alumno = idBusqueda;
+
+end**
+
+call ConsultaAgendaAlumno("2020630244");
+
 
 
 

@@ -5,12 +5,27 @@
 	include('ConexionBD.php');
 	
 
-	$conexion = new Conexion();
+	/*$consultaAlumno = new Conexion();
+	$consultaAgenda = new Conexion();
+
 	$alumno = new Alumno();
+	$agendaAlum = new Agenda();
 
-	$alumno = $conexion->consultarAlumno("2020630244");
+	$alumno = $consultaAlumno->consultarAlumno("2020630244");
+	$agendaAlum = $consultaAgenda->consultaAgendaAlumno("2020630244");
+	*/
 
-	echo $alumno->Nombre;
+	$consulta = new Conexion();
+	
+
+	$alumno = new Alumno();
+	$agendaAlum = new Agenda();
+
+	$alumno = $consulta->consultarAlumno("2020630244");
+	$agendaAlum = $consulta->consultaAgendaAlumno("2020630244");	
+
+	echo $alumno->CURP;
+	echo $agendaAlum->fecha;
 
 
 
