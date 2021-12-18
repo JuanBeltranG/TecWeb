@@ -24,13 +24,13 @@
 	$alumno = $consulta->consultarAlumno("2020630244");
 	$agendaAlum = $consulta->consultaAgendaAlumno("2020630244");	
 
-	echo $alumno->CURP;
-	echo $agendaAlum->fecha;
+	/*echo $alumno->CURP;
+	echo $agendaAlum->fecha;*/
 
 
 
 	//$fpdf->Image(ruta, posicionx, posiciony, alto, ancho, tipo, link)
-/*
+
 	class PDF extends FPDF
 	{
 		// Cabecera de página
@@ -83,5 +83,5 @@
 	//le damos salida en el navegador
 	$pdf ->Output();
 
-	*/
+	
 ?>
