@@ -11,6 +11,7 @@
         //Contacto
         public $Calle;
         public $Colonia;
+        public $Alcaldia;
         public $CodigoPostal;
         public $Telefono;
         public $Email;
