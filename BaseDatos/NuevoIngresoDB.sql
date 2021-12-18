@@ -170,3 +170,6 @@ begin
 		end if;
 end;**
 delimiter ;
+select * from IdentidadAlumno;
+select * from ContactoAlumno;
+select * from ProcedenciaAlumno;

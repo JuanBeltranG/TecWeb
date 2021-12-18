@@ -1,34 +1,39 @@
 <?php
 	include("../Modelo/Alumno.php");
 
-
-    
-    class Conexion {
+        class Conexion {
         public $url = "localhost";
         public $user = "root";
-        public $psw = "28062001**gar";
+        public $psw = "n0m3l0";
         public $bd = "NuevoIngresoESCOM";
         public $port = 3306;
         public $mysqli;
-
-        
 
         function __construct() {
             $this->mysqli = mysqli_connect($this->url, $this->user, $this->psw, $this->bd, $this->port);
         }
 
         public function registrarAlumno($alumno){   
-            
-            
-            
-            $query = "CALL PruebaAlta (
-                $alumno->NoBoleta,
-                $alumno->Nombre 
-            )";
-
-            
-
-            $this->mysqli->query($query);
+                        
+            $query1 = "call AltaAlumno (
+                '$alumno->NoBoleta',
+                '$alumno->Nombre',
+                '$alumno->ApellidoP',
+                '$alumno->ApellidoM',
+                '$alumno->FNacimiento',
+                '$alumno->Genero',
+                '$alumno->CURP',
+                '$alumno->Calle',
+                '$alumno->Colonia',
+                '$alumno->Alcaldia',
+                '$alumno->CodigoPostal',
+                '$alumno->Telefono',
+                '$alumno->Email',
+                '$alumno->Escuela',
+                '$alumno->Entidad',
+                '$alumno->Promedio',
+                '$alumno->NumeroOp')";
+            $this->mysqli->query($query1);
         } 
 
         public function consultarAlumno($boleta){
