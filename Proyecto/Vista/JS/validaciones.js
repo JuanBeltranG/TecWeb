@@ -112,19 +112,19 @@ function validarRegistroDatos() {
     }
 
     // Valida Calle y numero
-    const validar_calle = /^[A-Za-z0-9\s\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1]+$/;
+    const validar_calle = /^[A-Za-z0-9\.\s\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1]+$/;
     flag = flag && validar_calle.test(document.getElementById("calle").value);
     if (!flag) {
-        alert("Calle y numero solo debe de contener letras, numeros y espaciones");
+        alert("Calle y numero solo debe de contener letras, numeros, puntos y espacios");
         document.getElementById("calle").focus();
         return flag;
     }
 
     // Valida Colonia
-    const validar_colonia = /^[A-Za-z0-9\s\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1]+$/;
+    const validar_colonia = /^[A-Za-z0-9\.\s\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1]+$/;
     flag = flag && validar_colonia.test(document.getElementById("colonia").value);
     if (!flag) {
-        alert("Colonia solo debe de tener letras, numeros y espacios");
+        alert("Colonia solo debe de tener letras, numeros, puntos y espacios");
         document.getElementById("colonia").focus();
         return flag;
     }
