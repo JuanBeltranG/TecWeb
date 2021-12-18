@@ -78,5 +78,37 @@ function validarRegistroDatos(){
         return false;
     }
 
+    // Valida Codigo Postal
+    const validar_cp = /^\d{5}$/;
+    flag = flag && validar_cp.test(document.getElementById("cp").value);
+    if(!flag){
+        alert("El codigo postal dede de ser solo 5 digitos");
+        document.getElementById("cp").focus();
+        return flag;
+    }
+
+    // Valida Telefono o Celular
+    const validar_telefono = /^\d{10}$/;
+    flag = flag && validar_telefono.test(document.getElementById("telefono").value);
+    if(!flag){
+        alert("El numero de telefono o celular dede de estar formado por 10 digitos");
+        document.getElementById("telefono").focus();
+        return flag;
+    }
+
+    // Valida Escuela de procedencia
+    if(document.getElementById("escuela_procedencia").value == "Ninguna"){
+        alert("Debes de seleccionar una escuela de procedencia");
+        document.getElementById("escuela_procedencia").focus();
+        return false;
+    }
+
+    // Valida Entidad de procedencia
+    if(document.getElementById("entidad_procedencia").value == "Ninguna"){
+        alert("Debes de seleccionar una entidad federativa de procedencia");
+        document.getElementById("entidad_procedencia").focus();
+        return false;
+    }
+
     return flag;
 }
