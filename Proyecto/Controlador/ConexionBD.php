@@ -4,7 +4,7 @@
         class Conexion {
         public $url = "localhost";
         public $user = "root";
-        public $psw = "n0m3l0";
+        public $psw = "28062001**gar";
         public $bd = "NuevoIngresoESCOM";
         public $port = 3306;
         public $mysqli;
@@ -37,33 +37,18 @@
         } 
 
         public function consultarAlumno($boleta){
-            $alumno = new Alumno;
-            $alumno->boleta=0;
-            $query = "Call procedureAlumno(2, '$boleta', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', 0)";
+            $alumno = new Alumno();
+            
+            $query = "Call ConsultaAlumnos($boleta)";
+
             if($result =  $this->mysqli->query($query)){
                 while ($row = mysqli_fetch_assoc($result)){
-                    $alumno->boleta = $row['boleta'];  
-                    $alumno->nombre = $row['nombre'];
-                    $alumno->paterno = $row['apellidoPat'];
-                    $alumno->materno = $row['apellidoMat'];
-                    $alumno->email = $row['email'];
-                    $alumno->nacimiento = $row["nacimiento"];
-                    $alumno->genero = $row['genero'];
-                    $alumno->curp = $row['curp'];
-                    $alumno->calle = $row['calle'];
-                    $alumno->colonia = $row['colonia'];
-                    $alumno->cp = $row['cp'];
-                    $alumno->tel = $row['tel'];
-                    $alumno->promedio = $row['promedio'];
-                    $alumno->opcion = $row['opcionEscom'];
-                    $alumno->procedencia = $row['escuela'];
-                    $alumno->estado = $row['estado'];
-                    $alumno->laboratorio = $row['laboratorio'];
-                    $alumno->hora = $row['hora'];
-                    $alumno->fechaAplicacion = $row['fecha'];
-                    $alumno->idEstado = $row['idEstado'];
-                    $alumno->idEscuela = $row['idEscuela'];
-                    $alumno->otra = $alumno->procedencia;
+
+                    $alumno->NoBoleta = $row['NoBoleta'];  
+                    $alumno->Nombre = $row['Nombre'];
+                    $alumno->ApellidoP = $row['ApellidoP'];
+                    $alumno->ApellidoM = $row['ApellidoM'];
+
                 }
             }
             return $alumno;

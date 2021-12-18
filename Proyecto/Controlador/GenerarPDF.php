@@ -1,17 +1,21 @@
 <?php
 	//llamamos al archivo fpdf
 	require('fpdf/fpdf.php');
-	include('../ConexionBD.php');
+	
+	include('ConexionBD.php');
+	
 
 	$conexion = new Conexion();
 	$alumno = new Alumno();
 
-	
+	$alumno = $conexion->consultarAlumno("2020630244");
+
+	echo $alumno->Nombre;
 
 
 
 	//$fpdf->Image(ruta, posicionx, posiciony, alto, ancho, tipo, link)
-
+/*
 	class PDF extends FPDF
 	{
 		// Cabecera de página
@@ -21,7 +25,7 @@
 			// Logo
 			//$this->Image('escudoESCOM.png',160,8,35, 30);
 			//$this->Image('logo-ipn.png',10,8,35, 30, 30, 50, 'png');
-			$this->Image('../../Recursos/Imagenes/encabezado.png',3,5,200);
+			$this->Image('../Recursos/Imagenes/encabezado.png',3,5,200);
 			// Arial bold 15
 			$this->SetFont('Arial','B',15);
 			// Movernos a la derecha
@@ -64,5 +68,5 @@
 	//le damos salida en el navegador
 	$pdf ->Output();
 
-	
+	*/
 ?>

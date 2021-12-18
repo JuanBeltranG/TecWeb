@@ -228,7 +228,17 @@ begin
 		end if;
 end;**
 delimiter ;
-select * from IdentidadAlumno;
-select * from ContactoAlumno;
-select * from ProcedenciaAlumno;
-select * from AgendaAlumno;
+
+
+use NuevoIngresoESCOM;
+drop procedure if exists ConsultaAlumnos;
+delimiter **
+create procedure ConsultaAlumnos( in boleta varchar(10))
+begin
+ 
+select * from IdentidadAlumno where NoBoleta = boleta;
+
+end**
+
+
+
