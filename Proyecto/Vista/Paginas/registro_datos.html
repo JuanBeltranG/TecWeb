@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <form  method="post" action="../../Controlador/AltaAlumno.php">
+    <form method="post" action="../../Controlador/AltaAlumno.php" onsubmit="return validarRegistroDatos()">
         <fieldset>
             <legend>Identidad</legend>
 
@@ -24,7 +24,7 @@
             
             <input type="text" name="apellido_m" id="apellido_m" placeholder="Apellido Materno" required>
             
-            <input type="date" name="fecha" id="fecha" required>
+            <input type="date" name="fecha" id="fecha" max="2004-12-31" required>
             
             <select name="genero" id="genero" required>
                 <option value="Ninguno" selected disabled>Selecciona tu genero</option>
@@ -43,7 +43,7 @@
             <input type="text" id="colonia" name="colonia" placeholder="Colonia" required>
 
             <select name="alcaldia" id="alcaldia" required>
-                <option value="Ninguna " selected disabled>Seleccione una alcaldia</option>
+                <option value="Ninguna" selected disabled>Seleccione una alcaldia</option>
                 <option value="Iztapalapa">Iztapalapa</option>
             </select>
 
