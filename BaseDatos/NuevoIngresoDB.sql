@@ -4,45 +4,86 @@ use NuevoIngresoESCOM;
 
 
 create table IdentidadAlumno(
-	Id_Alumno  int(3) not null auto_increment primary key, /*Prefieren la BOLETA o CURP como PK?*/
-	NoBoleta    varchar(10) not null,
-	Nombre      varchar(30),
-	ApellidoP        varchar(30),
-	ApellidoM        varchar(30),
+	Id_Alumno int(3) not null auto_increment primary key, /*Prefieren la BOLETA o CURP como PK?*/
+	NoBoleta varchar(10) not null,
+	Nombre varchar(30),
+	ApellidoP varchar(30),
+	ApellidoM varchar(30),
 	FechaNacimiento date,
-	Genero      varchar(30),
-	CURP        varchar(18)
+	Genero varchar(30),
+	CURP varchar(18)
 );
 
 create table ContactoAlumno(
-	Id_Alumno        int(3),
-	Calle             varchar(50), /*Creo que es innecesario el numero*/
-    Colonia           varchar(50),
-    Alcaldia          varchar(50),
-    CodigoPostal      int(5),
-    Telefono          int(10),
+	Id_Alumno int(3),
+	Calle varchar(50), /*Creo que es innecesario el numero*/
+    Colonia varchar(50),
+    Alcaldia varchar(50),
+    CodigoPostal int(5),
+    Telefono int(10),
     Email varchar(50),
     foreign key (Id_Alumno) references IdentidadAlumno (Id_Alumno)
 );
 
 create table ProcedenciaAlumno(
-	Id_Alumno         int(3),
+	Id_Alumno int(3),
 	Escuela varchar(50),
     Entidad varchar(50),
-    Promedio           float(2,2),
-    NumOpcion          int(1),/*Numero de opcion que fue ESCOM*/
+    Promedio float(2,2),
+    NumOpcion int(1),/*Numero de opcion que fue ESCOM*/
     foreign key (Id_Alumno) references IdentidadAlumno (Id_Alumno)
 );
 
 create table Laboratorios(
 	Id_Laboratorio int(3) not null auto_increment primary key, 
-    Nombre varchar(50)
+    Nombre varchar(50),
+    Edificio int(3)
 );
 
-create table Alumno_Laboratorio(
-	Id_Laboratorio int not null,
-    Id_Alumno int not null
+insert into laboratorios(Nombre,Edificio) values ('Laboratorio Uno',1);
+insert into laboratorios(Nombre,Edificio) values ('Laboratorio Dos',1);
+insert into laboratorios(Nombre,Edificio) values ('Laboratorio Tres',1);
+insert into laboratorios(Nombre,Edificio) values ('Laboratorio Cuatro',2);
+insert into laboratorios(Nombre,Edificio) values ('Laboratorio Cinco',2);
+insert into laboratorios(Nombre,Edificio) values ('Laboratorio sesis',2);
+
+Select * from laboratorios;
+
+create table Agenda(
+	Id_Agenda int(3) not null auto_increment primary key,
+    Id_Laboratorio int(3),
+    Hora time, 
+    fecha date,
+    foreign key (Id_Laboratorio) references Laboratorios (Id_Laboratorio)
 );
+
+insert into Agenda(Id_laboratorio,hora,fecha) values (1,'07:00:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (1,'08:45:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (1,'10:30:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (2,'07:00:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (2,'08:45:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (2,'10:30:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (3,'07:00:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (3,'08:45:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (3,'10:30:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (4,'07:00:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (4,'08:45:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (4,'10:30:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (5,'07:00:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (5,'08:45:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (5,'10:30:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (6,'07:00:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (6,'08:45:00','01-01-22');
+insert into Agenda(Id_laboratorio,hora,fecha) values (6,'10:30:00','01-01-22');
+
+
+create table AgendaAlumno(
+	Id_Alumno int(3) not null,
+    Id_Agenda int(3) not null,
+    foreign key (Id_Alumno) references IdentidadAlumno(Id_Alumno),
+    foreign key (Id_Agenda) references Agenda(Id_Agenda)
+);
+
 
 drop procedure if exists AltaAlumno;
 delimiter **
@@ -68,6 +109,9 @@ begin
 declare existe int;
 declare mjs nvarchar(50);
 declare idAlumno int;
+declare i int;
+declare j int;
+declare AlumnosAgendados int;
 	set existe = (select count(*) from IdentidadAlumno where NoBoleta = Boleta );
 			if(existe = 0)then
 				INSERT INTO IdentidadAlumno(NoBoleta,Nombre,ApellidoP,ApellidoM,FechaNacimiento,Genero,CURP) 
@@ -78,6 +122,19 @@ declare idAlumno int;
                 INSERT INTO ProcedenciaAlumno(Id_Alumno,Escuela,Entidad,Promedio,NumOpcion) 
 				values (idAlumno,EscuelaPA,EntidadPA,PromedioA,NumeroPA);               
 				set mjs = 'Alumno registrado';
+                
+                /* Registros de horarios y laboratorios*/
+                set i=1;
+                myloop : while i <= 18 do
+					set AlumnosAgendados = (select count(*) from AgendaAlumno where Id_Agenda = i);
+                    if(AlumnosAgendados < 30)then
+							insert into AgendaAlumno (Id_Alumno,Id_Agenda) values (idAlumno,i);
+                            leave myloop;
+					else 
+						set i = i +1;
+                    end if;
+				end while myloop;
+                
 			else
 				set mjs = 'Alumno existente';
 			end if;
@@ -85,9 +142,10 @@ select idAlumno as usuario, mjs as mensaje;
 end**
 
 call AltaAlumno(2020630244,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
-select * from IdentidadAlumno**
-select * from ContactoAlumno**
-select * from ProcedenciaAlumno**
+call AltaAlumno(2020632344,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
+call AltaAlumno(2021632345,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
+call AltaAlumno(2021632324,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
+call AltaAlumno(2021632314,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
 
 
 drop procedure if exists ActualizaAlumno;
@@ -173,3 +231,4 @@ delimiter ;
 select * from IdentidadAlumno;
 select * from ContactoAlumno;
 select * from ProcedenciaAlumno;
+select * from AgendaAlumno;
