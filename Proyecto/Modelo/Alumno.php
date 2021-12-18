@@ -12,7 +12,7 @@
         public $Calle;
         public $Colonia;
         public $CodigoPostal;
-        public $Telefono;;
+        public $Telefono;
         public $Email;
         //Procedencia
         public $Escuela;

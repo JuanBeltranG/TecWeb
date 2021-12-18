@@ -1,5 +1,6 @@
 <?php
-
+    include("ConexionBD.php");
+    include("../Modelo/Alumno.php");
     $conexion = new Conexion;
     $conexion->registrarAlumno($alumno);
 	$alumno = new Alumno;
