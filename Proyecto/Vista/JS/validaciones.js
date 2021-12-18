@@ -1,3 +1,16 @@
+function checaOtra(){
+    if(document.getElementById("escuela_procedencia").value == "Otra"){
+        document.getElementById("nombre_escuela").disabled = false;
+        document.getElementById("nombre_escuela").required = true;
+    }
+    else{
+        document.getElementById("nombre_escuela").disabled = true;
+        document.getElementById("nombre_escuela").required = false;
+    }
+    document.getElementById("nombre_escuela").value = "";
+    return;
+}
+
 function validarRegistroDatos(){
     var flag = true;
 
@@ -107,6 +120,36 @@ function validarRegistroDatos(){
     if(document.getElementById("entidad_procedencia").value == "Ninguna"){
         alert("Debes de seleccionar una entidad federativa de procedencia");
         document.getElementById("entidad_procedencia").focus();
+        return false;
+    }
+
+    //Valida Otra Nombre de escuela
+    if(document.getElementById("escuela_procedencia").value == "Otra"){
+        const validar_nombreEscuela = /^[A-Za-z0-9\s\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1\.]+$/;
+        flag = flag && validar_nombreEscuela.test(document.getElementById("nombre_escuela").value);
+        if(!flag){
+            alert("El nombre de la escuela solo puede contener letras, numeros, espacios y puntos");
+            document.getElementById("nombre_escuela").focus();
+            return flag;
+        }
+    }
+
+    //Validad Escom opcion
+    var op1 = 0, op2 = 0, op3 = 0, op4 = 0;
+    if(document.getElementById("primera_opcion").checked){
+        op1 = 1;
+    }
+    if(document.getElementById("segunda_opcion").checked){
+        op2 = 1;
+    }
+    if(document.getElementById("tercera_opcion").checked){
+        op3 = 1;
+    }
+    if(document.getElementById("cuarta_opcion").checked){
+        op4 = 1;
+    }
+    if((op1 + op2 + op3 + op4) != 1){
+        alert("Debes de indicar que opcion fue ESCOM marcando solo una casilla");
         return false;
     }
 
