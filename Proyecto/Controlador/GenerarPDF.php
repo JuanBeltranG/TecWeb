@@ -60,14 +60,6 @@
 	$pdf-> AliasNbPages();
 	//agregamos una pagina al pdf
 	$pdf ->AddPage();
-<<<<<<< HEAD
-	//establecemos las fuentes
-	$pdf->SetFont('Arial','B',12);
-	//CELL nos pone el texto en tipo tablas
-	$pdf->Cell(30,80, $alumno->Nombre);
-	//utf8_decode() ayuda a que las ñ y acentos se vean sin problemas
-	$pdf->Cell(40, 80, utf8_decode('Cómo estás?'));
-=======
 
 	//------------------1RA PAGINA------------------------------
 	$pdf->Ln(25);
@@ -167,7 +159,6 @@
 
 
 	//------------------------2DA PAGINA-----------------------
->>>>>>> 32bfddadba934b42a8cc09c271e7bba759d88501
 	$pdf ->AddPage();
 
 	$pdf->Ln(25);
@@ -218,8 +209,4 @@
 	//le damos salida en el navegador
 	$pdf ->Output();
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 32bfddadba934b42a8cc09c271e7bba759d88501
 ?>
