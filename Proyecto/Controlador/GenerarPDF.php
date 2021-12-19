@@ -1,8 +1,9 @@
 <?php
 	//llamamos al archivo fpdf
 	require('fpdf/fpdf.php');
-	
 	include('ConexionBD.php');
+    include("./phpMailer/class.phpmailer.php");
+    include("./phpMailer/class.smtp.php");
 	
 
 	/*$consultaAlumno = new Conexion();
@@ -205,6 +206,40 @@
     $pdf->Cell(28,10,utf8_decode("Laboratorio:"));
     $pdf->SetFont('Arial','',12);
     $pdf->Cell(0,10,utf8_decode("$agendaAlum->NombreLab"));
+
+
+    //Envio pdf
+    $phpmailer = new PHPMailer();
+    $phpmailer->Username = "sistemaequipo3@gmail.com";
+    $phpmailer->Password = "belverlopran123";
+    
+    $phpmailer->IsSMTP();
+    //$phpmailer->SMTPDebug = 2;
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->SMTPSecure = 'tls';
+    $phpmailer->SMTPAutoTLS = false;
+    $phpmailer->Host = 'smtp.gmail.com';
+    $phpmailer->Port = 587;
+    $phpmailer->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+    $phpmailer->setFrom($phpmailer->Username, "Sistema Nuevo Ingreso ESCOM");
+
+    $phpmailer->AddAddress($alumno->Email);        
+    $phpmailer->Subject = "Comprobante de inscripcion Nuevo ingreso";	
+    $phpmailer->Body .="<h1 style='color:#3498db;'>Bienvenido a Escom!</h1><p>";
+    $phpmailer->Body .= "Este es tu comprobante de inscripcion.";
+    $phpmailer->AddStringAttachment($pdf->Output('','S'), 'Comprobante.pdf', 'base64', 'application/pdf');
+    $phpmailer->Body .= "</p><p>Generado en fecha y hora: ".date("d-m-Y h:i:s")."</p>";
+    $phpmailer->IsHTML(true);
+
+    if(!$phpmailer->Send()){
+        echo "Mailer Error: " . $phpmailer->ErrorInfo;
+    }
 
 	//le damos salida en el navegador
 	$pdf ->Output();
