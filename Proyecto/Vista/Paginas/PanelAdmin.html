@@ -101,13 +101,12 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">Opciones del administrador</h4>
-          <p class="text-muted">Ingresa con tus credenciales para poder administrar y gestionar la información de los registros de los alumnos de nuevo ingreso</p>
+          <h4 class="text-white">Cerrar sesión</h4>
+          <p class="text-muted">¿Está seguro de querer salir?</p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
-          <!--<h4 class="text-white">Ingresar al panel de administrador</h4>-->
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button">Button</button>
+            <button class="btn btn-primary" type="button">Salir</button>
           
           </div>
           
@@ -124,71 +123,101 @@
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <!--<span class="navbar-toggler-icon"></span>-->
-        <strong>Administrador</strong>
+        <strong>Cerrar sesión</strong>
 
       </button>
     </div>
   </div>
 </header>
 
-
 <main>
 
-  
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-4">
+  <div class="album py-2 bg-light">
+  <section class="py-4 text-center container">
+    <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <bold><h2 >Panel del administrador</h2></bold>
-        <p class="lead text-muted"></p>
-        <!--<p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>-->
+        <bold><h1 class="text-secondary">Panel del Administrador</h1></bold>
       </div>
     </div>
   </section>
 
-  <div class="album py-2 bg-light">
-
+  <section class="container">
     <div class="container">
+      <form class="d-flex align-items-center p-3 my-3 text-white bg-info rounded shadow-sm">
+        <div class="col-lg-3 col-md-8 ">
+          <h3 class="text-white">Registrar alumno</h3>
+        </div>
+        <button class="form-control me-2 btn btn-success btn-lg" type="submit"> Nuevo alumno </button>
+      </form>
+          
+      <form class="d-flex align-items-center p-3 my-3 text-white bg-info rounded shadow-sm">
+        <div class="col-lg-3 col-md-8 ">
+          <h3 class="text-white">Buscar alumno</h3>
+        </div>
+        <input class="form-control me-2" type="search" placeholder="Número de boleta" aria-label="Search">
+        <button class="btn btn-success " type="submit">Buscar</button>
+      </form>
+    </div>
+  </section>
+</div>
 
+  <section class="py-4 text-center container"></section>
+    <div class="album py-2">
+      <div class="row py-lg-4">
+          <bold><h3 class="text-center">LISTA DE ALUMNOS REGISTRADOS</h3></bold>
+        </div>
+      </div>
+      
+      <div class="container">
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+              <tr class="table-dark ">
+                <th scope="col">Número de boleta</th>
+                <th scope="col">Nombre(s)</th>
+                <th scope="col">Apellido paterno</th>
+                <th scope="col">Apellido materno</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">2020630499</th>
+                <td>Daniela</td>
+                <td>Vera</td>
+                <td>García</td>
+                <td class="d-flex justify-content-end">
+                  <button class="btn btn-outline-primary btn-sm" type="submit">Consultar</button>
+                  <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
+                  <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                </td>
               </tr>
               <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
+                <th scope="row">2020630499</th>
+                <td>Daniela</td>
+                <td>Vera</td>
+                <td>García</td>
+                <td class="d-flex justify-content-end">
+                  <button class="btn btn-outline-primary btn-sm" type="submit">Consultar</button>
+                  <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
+                  <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                </td>
               </tr>
               <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+                <th scope="row">2020630499</th>
+                <td>Daniela</td>
+                <td>Vera</td>
+                <td>García</td>
+                <td class="d-flex justify-content-end">
+                  <button class="btn btn-outline-primary btn-sm" type="submit">Consultar</button>
+                  <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
+                  <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                </td>
               </tr>
-            </tbody>
-          </table>
-
-
-
+          </tbody>
+        </table>
+      </div>
     </div>
-
-  </div>
+  </section>
 
 </main>
 
