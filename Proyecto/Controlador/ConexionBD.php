@@ -5,7 +5,7 @@
         class Conexion {
         public $url = "localhost";
         public $user = "root";
-        public $psw = "n0m3l0";
+        public $psw = "dany1905";
         public $bd = "NuevoIngresoESCOM";
         public $port = 3306;
         public $mysqli;
