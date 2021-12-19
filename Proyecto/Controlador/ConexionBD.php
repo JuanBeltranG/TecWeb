@@ -46,6 +46,10 @@
             if($result = $this->mysqli->query($query1)){
                 while ($row = mysqli_fetch_assoc($result)){
                     echo $row['mensaje'];
+                    echo '<script>alert("Alumno registrado");</script>';
+                    //echo '<script>window.open("GenerarPDF.php","_blank");</script>';
+                    echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+
                 }
             }
             else{

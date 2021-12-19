@@ -272,17 +272,3 @@ where AgAl.Id_Alumno = idBusqueda;
 end**
 
 call ConsultaAgendaAlumno("2020630244");
-
-
-use NuevoIngresoESCOM;
-drop procedure if exists AltaPrueba;
-delimiter **
-create procedure AltaPrueba( in boleta varchar(10), in nnombreal varchar(30))
-begin
- 
-
-insert into IdentidadAlumno(NoBoleta, Nombre) values(boleta, nnombreal);
-
-end**
-
-
