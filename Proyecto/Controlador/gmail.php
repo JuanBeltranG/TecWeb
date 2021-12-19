@@ -1,12 +1,11 @@
 <?php
 include("./phpMailer/class.phpmailer.php");
 include("./phpMailer/class.smtp.php");
-include("./phpMailer/class.smtp.php");
 
-$email_user = "TU_CUENTA_GMAIL"; //OJO. Debes actualizar esta línea con tu información
-$email_password = "PASSWORD_DE_TU_CUENTA_GMAIL"; //OJO. Debes actualizar esta línea con tu información
+$email_user = "sistemaequipo3@gmail.com"; //OJO. Debes actualizar esta línea con tu información
+$email_password = "belverlopran123"; //OJO. Debes actualizar esta línea con tu información
 $the_subject = "Prueba de PHPMailer por PEM (Dic 2021)";
-$address_to = "CUENTA_DE_CORREO_DONDE_SE_ENVIA_MENSAJE"; //OJO. Debes actualizar esta línea con tu información
+$address_to = "juan.beltran2333@gmail.com"; //OJO. Debes actualizar esta línea con tu información
 $from_name = "Tec Web - 2CM13";
 $phpmailer = new PHPMailer();
 
@@ -30,5 +29,7 @@ $phpmailer->Body .= "<p>Mensaje personalizado</p>";
 $phpmailer->Body .= "<p>Fecha y Hora: ".date("d-m-Y h:i:s")."</p>";
 $phpmailer->IsHTML(true);
 
-$phpmailer->Send();
+if(!$phpmailer->Send()){
+    echo "Mailer Error: " . $phpmailer->ErrorInfo;
+}
 ?>
