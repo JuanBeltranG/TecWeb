@@ -8,7 +8,7 @@
 
     <script type="text/javascript" src="../JS/validaciones.js"></script>
 
-    <title>Document</title>
+    <title>Registro de datos</title>
 </head>
 
 <body>
@@ -44,7 +44,21 @@
 
             <select name="alcaldia" id="alcaldia" required>
                 <option value="Ninguna" selected disabled>Seleccione una alcaldia</option>
+                <option value="Azcapotzalco">Azcapotzalco</option>
+                <option value="Álvaro Obregón">Álvaro Obregón</option>
+                <option value="Benito Juárez">Benito Juárez</option>
+                <option value="Coyoacán">Coyoacán</option>
+                <option value="Cuajimalpa de Morelos">Cuajimalpa de Morelos</option>
+                <option value="Cuauhtémoc">Cuauhtémoc</option>
+                <option value="Gustavo A. Madero">Gustavo A. Madero</option>
+                <option value="Iztacalco">Iztacalco</option>
                 <option value="Iztapalapa">Iztapalapa</option>
+                <option value="Magdalena Contreras">Magdalena Contreras</option>
+                <option value="Milpa Alta">Milpa Alta</option>
+                <option value="Tlalpan">Tlalpan</option>
+                <option value="Tláhuac">Tláhuac</option>
+                <option value="Venustiano Carranza">Venustiano Carranza</option>
+                <option value="Xochimilco">Xochimilco</option>
             </select>
 
             <input type="text" id="cp" name="cp" placeholder="Codigo Postal" minlength="5" maxlength="5" onkeyup="soloDigitos('cp')" required>
@@ -59,13 +73,60 @@
             
             <select name="escuela_procedencia" id="escuela_procedencia" onchange="checaOtra()" required>
                 <option value="Ninguna" selected disabled>Selecione su escuela de procedencia</option>
-                <option value="Batiz">Batiz</option>
+                <option value="CECyT 1 González Vázquez Vega">CECyT 1 “González Vázquez Vega”</option>
+                <option value="CECyT 2 Miguel Bernard">CECyT 2 "Miguel Bernard"</option>
+                <option value="CECyT 3 Estanislao Ramírez Ruiz">CECyT 3 "Estanislao Ramírez Ruiz"</option>
+                <option value="CECyT 4 Lázaro Cárdenas">CECyT 4 "Lázaro Cárdenas"</option>
+                <option value="CECyT 5 Benito Juárez García">CECyT 5 "Benito Juárez García"</option>
+                <option value="CECyT 6 Miguel Othón de Mendizábal">CECyT 6 "Miguel Othón de Mendizábal"</option>
+                <option value="CECyT 7 Cuauhtémoc">CECyT 7 "Cuauhtémoc"</option>
+                <option value="CECyT 8 Narciso Bassols García">CECyT 8 "Narciso Bassols García"</option>
+                <option value="CECyT 9 Juan de Dios Bátiz">CECyT 9 "Juan de Dios Bátiz"</option>
+                <option value="CECyT 10 Carlos Vallejo Márquez">CECyT 10 "Carlos Vallejo Márquez"</option>
+                <option value="CECyT 11 Wilfrido Massieu Pérez">CECyT 11 "Wilfrido Massieu Pérez"</option>
+                <option value="CECyT 12 José María Morelos y Pavón">CECyT 12 "José María Morelos y Pavón"</option>
+                <option value="CECyT 13 Ricardo Flores Magón">CECyT 13 "Ricardo Flores Magón"</option>
+                <option value="CECyT 14 Luis Enrique Erro">CECyT 14 "Luis Enrique Erro"</option>
+                <option value="CECyT 15 Diódoro Antúnez Echegaray">CECyT 15 "Diódoro Antúnez Echegaray"</option>
+                <option value="CECyT 19 Leona Vicario">CECyT 19 “Leona Vicario”</option>
+                <option value="CET 1 Walter Cross Buchanan">CET 1 “Walter Cross Buchanan”</option>
                 <option value="Otra">Otra</option>
             </select>
 
             <select name="entidad_procedencia" id="entidad_procedencia" required>
                 <option value="Ninguna" selected disabled>Selecione su entidad federativa de procedencia</option>
+                <option value="AGUASCALIENTES">AGUAS CALIENTES</option>
+                <option value="BAJACALIFORNIA">BAJA CALIFORNIA</option>
+                <option value="BAJACALIFORNIASUR">BAJA CALIFORNIA SUR</option>
+                <option value="CAMPECHE">CAMPECHE</option>
+                <option value="COAHUILA">COAHUILA</option>
+                <option value="COLIMA">COLIMA</option>
+                <option value="CHIAPAS">CHIAPAS</option>
+                <option value="CHIHUAHUA">CHIHUAHUA</option>
                 <option value="CDMX">CDMX</option>
+                <option value="DURANGO">DURANGO</option>
+                <option value="GUANAJUATO">GUANAJUATO</option>
+                <option value="GUERRERO">GUERRERO</option>
+                <option value="HIDALGO">HIDALGO</option>
+                <option value="JALISCO">JALISCO</option>
+                <option value="MEXICO">MEXICO</option>
+                <option value="MICHOACAN">MICHOACAN</option>
+                <option value="MORELOS">MORELOS</option>
+                <option value="NAYARIT">NAYARIT</option>
+                <option value="NUEVOLEON">NUEVO LEON</option>
+                <option value="OAXACA">OAXACA</option>
+                <option value="PUEBLA">PUEBLA</option>
+                <option value="QUERETARO">QUERETARO</option>
+                <option value="QUINTANA ROO">QUINTANA ROO</option>
+                <option value="SAN LUIS POTOSI">SAN LUIS POTOSI</option>
+                <option value="SINALOA">SINALOA</option>
+                <option value="SONORA">SONORA</option>
+                <option value="TABASCO">TABASCO</option>
+                <option value="TAMAULIPAS">TAMAULIPAS</option>
+                <option value="TLAXCALA">TLAXCALA</option>
+                <option value="VERACRUZ">VERACRUZ</option>
+                <option value="YUCATAN">YUCATAN</option>
+                <option value="ZACATECAS">ZACATECAS</option>
             </select>
 
             <input type="text" name="nombre_escuela" id="nombre_escuela" placeholder="Nombre de la escuela" maxlength="50" onkeyup="alfanumericoYEspaciosYPuntos('nombre_escuela')" disabled>
