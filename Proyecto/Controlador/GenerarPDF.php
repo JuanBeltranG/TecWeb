@@ -24,10 +24,8 @@
 	$alumno = $consulta->consultarAlumno("2020630244");
 	$agendaAlum = $consulta->consultaAgendaAlumno("2020630244");	
 
-	/*echo $alumno->CURP;
-	echo $agendaAlum->fecha;*/
-
-
+	
+	
 
 	//$fpdf->Image(ruta, posicionx, posiciony, alto, ancho, tipo, link)
 
@@ -74,7 +72,7 @@
 	//establecemos las fuentes
 	$pdf->SetFont('Arial','B',12);
 	//CELL nos pone el texto en tipo tablas
-	$pdf->Cell(30,80, 'Hola Mundo');
+	$pdf->Cell(30,80, $alumno->Nombre);
 	//utf8_decode() ayuda a que las ñ y acentos se vean sin problemas
 	$pdf->Cell(40, 80, utf8_decode('Cómo estás?'));
 	$pdf ->AddPage();

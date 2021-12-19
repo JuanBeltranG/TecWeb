@@ -19,6 +19,8 @@
         }
 
         public function registrarAlumno($alumno){  
+
+            echo "entro a la funcion registrar alumno";
             
             self::IniciaConexion();
                         
@@ -33,14 +35,16 @@
                 '$alumno->Calle',
                 '$alumno->Colonia',
                 '$alumno->Alcaldia',
-                '$alumno->CodigoPostal',
-                '$alumno->Telefono',
+                09100,
+                1234567890,
                 '$alumno->Email',
                 '$alumno->Escuela',
                 '$alumno->Entidad',
-                '$alumno->Promedio',
-                '$alumno->NumeroOp')";
+                floatval($alumno->Promedio),
+                1)";
             $this->mysqli->query($query1);
+
+            echo "final de la funcion";
         } 
 
         public function consultarAlumno($boleta){
@@ -98,6 +102,15 @@
                 }
             }
             return $agenda;
+        }
+
+        public function altaPrueba($alumno){
+
+            self::IniciaConexion();
+
+            $query = "CALL AltaPrueba('$alumno->NoBoleta','$alumno->Nombre')";
+
+            $this->mysqli->query($query);
         }
 
 		
