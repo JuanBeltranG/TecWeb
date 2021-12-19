@@ -32,6 +32,18 @@
   <!--Estilos para los iconos de las opciones del alumno-->
   <link href="features.css" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  
+  <script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    })     
+  </script>
+
 
   </head>
   <body>
@@ -107,7 +119,60 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <!--<h4 class="text-white">Ingresar al panel de administrador</h4>-->
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button">Button</button>
+            
+            <!-- Boton para abrir la ventana modal  -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Ingresar
+            </button>
+           
+           <!-- Ventana modal para inicio sesion admin -->
+           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+             <div class="modal-dialog">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h5 class="modal-title" id="staticBackdropLabel">Inicio de sesión de administrador</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                   <form action="registra_cita" method="post">
+                 <div class="modal-body">
+                     
+                   <p class="font-weight-bold">Ingresa tus datos</p>
+
+                   <div class="row g-2">
+                     
+                       <div class="col-md">
+                         <div class="form-floating">
+                           <input type="text" class="form-control" id="CorreoAdmin" name="CorreoAdmin"  placeholder="Correo Electronico" >
+                           <label for="floatingInputGrid">Correo Electronico</label>
+                         </div>
+                       </div>
+                       
+                   </div>
+
+                   <div class="row g-2">
+                     
+                       <div class="col-md">
+                         <div class="form-floating">
+                           <input type="text" class="form-control" id="ContraAdmin" name="ContraAdmin" placeholder="Contraseña" >
+                           <label for="floatingInputGrid">Contraseña</label>
+                         </div>
+                       </div>
+                       
+                   </div>
+
+                 </div>
+
+
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  
+                   <input type="submit" value="Inicia sesión" class="btn btn-primary" >
+                 </div>
+                   </form>
+               </div>
+             </div>
+           </div>
+           <!--Fin de la ventana modal de inicio de sesion-->
           
           </div>
           
@@ -119,8 +184,12 @@
     <div class="container">
      
       <a href="#" class="navbar-brand d-flex align-items-center">
+        
+        <img src="../../Recursos/Imagenes/logo-ipn-blanco.png" width="30" >
+        <strong>&nbsp; &nbsp;IPN  ESCOM - UPIS &nbsp; &nbsp;</strong>
+
         <img src="../../Recursos/Imagenes/escudo-recortado.png" width="50" >
-        <strong>&nbsp; &nbsp; ESCOM - UPIS </strong>
+        
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <!--<span class="navbar-toggler-icon"></span>-->
@@ -177,7 +246,62 @@
             </div>
             <h3>Consulta tu registro (PDF)</h3>
             <p>Recupera el PDF que contiene tu información de registro y del examen</p>
-            <button type="button" class="btn btn-dark">Recuperar PDF</button>
+
+            <!--Boton para abrir la ventana modal para recuperar el PDF-->
+
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+              Recuperar PDF
+           </button>
+           
+           <!-- Ventana modal para la recuperacion del PDF -->
+           <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+             <div class="modal-dialog">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h5 class="modal-title" id="staticBackdropLabel">Recuperación de registro en PDF</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                   <form action="altaRecordatorio" method="post">
+                
+                 <div class="modal-body">
+
+                  <p class="font-weight-bold">Ingresa tus datos</p>
+                   <div class="row g-2">
+                     
+                       <div class="col-md">
+                         <div class="form-floating">
+                           <input type="text" class="form-control" id="BoletaPDF" name="BoletaPDF"  placeholder="Numero de Boleta" >
+                           <label for="floatingInputGrid">Numero de Boleta</label>
+                         </div>
+                       </div>
+                       
+                   </div>
+
+                   <div class="row g-2">
+                     
+                       <div class="col-md">
+                         <div class="form-floating">
+                           <input type="text" class="form-control" id="CURPPDF" name="CURPPDF" placeholder="CURP" >
+                           <label for="floatingInputGrid">CURP</label>
+                         </div>
+                       </div>
+                       
+                   </div>
+                   
+                   
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                   <!--<button type="button" class="btn btn-primary">Registrar</button>-->
+                   <input type="submit" value="Obtener PDF" class="btn btn-primary" >
+                 </div>
+                   </form>
+               </div>
+             </div>
+           </div>  
+
+
+
           </div>
           
         </div>
@@ -191,14 +315,10 @@
 <footer class="text-muted py-4">
   <div class="container">
     
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+    <p class="mb-1 text-center">Propiedad del Equipo 3 &copy; Derechos Reservados </p>
+    <p class="mb-0 text-center">Plataforma destinada para la materia de Tecnologias Web -Grupo 2CM13</p>
   </div>
 </footer>
 
-
-    <script src="../JS/bootstrap.bundle.min.js"></script>
-
-      
   </body>
 </html>
