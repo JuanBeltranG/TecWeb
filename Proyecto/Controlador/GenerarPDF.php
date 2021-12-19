@@ -5,6 +5,7 @@
     include("./phpMailer/class.phpmailer.php");
     include("./phpMailer/class.smtp.php");
 	
+    date_default_timezone_set("America/Mexico_City");
 
 	/*$consultaAlumno = new Conexion();
 	$consultaAgenda = new Conexion();
@@ -229,12 +230,12 @@
     );
     $phpmailer->setFrom($phpmailer->Username, "Sistema Nuevo Ingreso ESCOM");
 
-    $phpmailer->AddAddress($alumno->Email);        
-    $phpmailer->Subject = "Comprobante de inscripcion Nuevo ingreso";	
-    $phpmailer->Body .="<h1 style='color:#3498db;'>Bienvenido a Escom!</h1><p>";
-    $phpmailer->Body .= "Este es tu comprobante de inscripcion.";
+    $phpmailer->AddAddress("sebastyandmc07@gmail.com");  //$alumno->Email      
+    $phpmailer->Subject = "Comprobante de inscripcion Boleta ".$alumno->NoBoleta;
+    $phpmailer->Body .="<h1 style='color:#952F57;'>¡Bienvenid@ a Escom!</h1><p>";
+    $phpmailer->Body .= "<b>Hola ".$alumno->ApellidoP." ".$alumno->ApellidoM." ".$alumno->Nombre.", este es tu comprobante de inscripción, guardalo por cualquier caso en que este sea solicitado para algun tramite<b>";
     $phpmailer->AddStringAttachment($pdf->Output('','S'), 'Comprobante.pdf', 'base64', 'application/pdf');
-    $phpmailer->Body .= "</p><p>Generado en fecha y hora: ".date("d-m-Y h:i:s")."</p>";
+    $phpmailer->Body .= "</p><p>Este documento fue generado el dia ".date("d/m/Y")." a la hora ".date("h:i:s")."</p>";
     $phpmailer->IsHTML(true);
 
     if(!$phpmailer->Send()){
