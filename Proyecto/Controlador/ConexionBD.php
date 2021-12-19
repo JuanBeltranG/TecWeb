@@ -21,8 +21,8 @@
         public function registrarAlumno($alumno){  
             
             self::IniciaConexion();
-                        
-            $query1 = "call AltaAlumno (
+
+            $query1 = "call AltaAlumno(
                 '$alumno->NoBoleta',
                 '$alumno->Nombre',
                 '$alumno->ApellidoP',
@@ -39,8 +39,16 @@
                 '$alumno->Escuela',
                 '$alumno->Entidad',
                 '$alumno->Promedio',
-                '$alumno->NumeroOp')";
-            $this->mysqli->query($query1);
+                '$alumno->NumeroOp');";
+
+            if($result = $this->mysqli->query($query1)){
+                while ($row = mysqli_fetch_assoc($result)){
+                    echo $row['mensaje'];
+                }
+            }
+            else{
+                echo ($this->mysqli->error);
+            }
         } 
 
         public function consultarAlumno($boleta){
