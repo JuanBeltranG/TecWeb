@@ -230,7 +230,7 @@
     );
     $phpmailer->setFrom($phpmailer->Username, "Sistema Nuevo Ingreso ESCOM");
 
-    $phpmailer->AddAddress("sebastyandmc07@gmail.com");  //$alumno->Email      
+    $phpmailer->AddAddress($alumno->Email);  //$alumno->Email      
     $phpmailer->Subject = "Comprobante de inscripcion Boleta ".$alumno->NoBoleta;
     $phpmailer->Body .="<h1 style='color:#952F57;'>¡Bienvenid@ a Escom!</h1><p>";
     $phpmailer->Body .= "<b>Hola ".$alumno->ApellidoP." ".$alumno->ApellidoM." ".$alumno->Nombre.", este es tu comprobante de inscripción, guardalo por cualquier caso en que este sea solicitado para algun tramite<b>";
