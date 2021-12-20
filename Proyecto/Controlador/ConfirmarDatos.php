@@ -26,8 +26,16 @@
     $alumnor->Promedio = $_POST["promedio"];
     $alumnor->NumeroOp = $_POST["EscomOpcion"];
 
-   
+    session_start();
 
+	if(isset($_SESSION["AlumnoSesion"])){
+		unset($_SESSION['AlumnoSesion']);
+	}
 
+	$_SESSION["AlumnoSesion"]=$alumnor;
+	$_SESSION["PermisoEdicion"] = true;
+	session_write_close();
+
+    
 
 ?>
