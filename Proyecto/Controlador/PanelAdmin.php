@@ -107,8 +107,9 @@
                       include('ConexionBD.php');
                       $consulta = new Conexion();
                       $todosAlumnos = $consulta->consultarTodosAlumnos();
-
+                      $conteoAlumnos = 0;
                       foreach($todosAlumnos as $currentAlumno){
+                        $conteoAlumnos = $conteoAlumnos + 1;
                   ?>
                 <tr>
                   <th scope="row"><?php echo $currentAlumno->NoBoleta;?></th>
@@ -124,10 +125,35 @@
                       <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEditar" name="boletaEditar">
                       <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
                     </form>
-                    <form action="EliminarAlumno.php" method="post">
-                      <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEliminar" name="boletaEliminar">
-                      <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
-                    </form>
+                    
+
+                      <!--Boton para abrir la ventana modal-->
+                      <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop<?php echo $conteoAlumnos;?>">
+                          Eliminar
+                      </button>
+                      <!-- Ventana modal -->
+                      <div class="modal fade" id="staticBackdrop<?php echo $conteoAlumnos;?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <form action="EliminarAlumno.php" method="post">
+                              <div class="modal-header">
+                                
+                                <h5 class="modal-title" id="staticBackdropLabel">¿Está seguro de querer eliminar al alumno?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-footer">
+                                <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEliminar" name="boletaEliminar">
+                                <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                            
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>   
+
+
                   </td>
                 </tr>
                 <?php
