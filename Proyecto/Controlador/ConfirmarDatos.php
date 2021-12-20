@@ -17,7 +17,7 @@
     $alumnor->Calle = $_POST["calle"];
     $alumnor->Colonia = $_POST["colonia"];
     $alumnor->Alcaldia = $_POST["alcaldia"];
-    $alumnor->Alcaldia = $_POST["cp"];
+    $alumnor->CodigoPostal = $_POST["cp"];
     $alumnor->Telefono = $_POST["telefono"];
     $alumnor->Email = $_POST["correo"];
     //Procedencia

@@ -22,8 +22,11 @@
 	$alumno = new Alumno();
 	$agendaAlum = new Agenda();
 
-	$alumno = $consulta->consultarAlumno("2020630244");
-	$agendaAlum = $consulta->consultaAgendaAlumno("2020630244");	
+    $boletaRecibida = $_POST["BoletaPDF"];
+    $curpRecibido = $_POST["CURPPDF"];
+
+	$alumno = $consulta->consultarAlumno($boletaRecibida);
+	$agendaAlum = $consulta->consultaAgendaAlumno($boletaRecibida);	
 
 	//echo $alumno->CURP;
 	//echo $agendaAlum->fecha; 
@@ -208,41 +211,56 @@
     $pdf->SetFont('Arial','',12);
     $pdf->Cell(0,10,utf8_decode("$agendaAlum->NombreLab"));
 
+    //Verifica CURP
+    /*echo $alumno->NoBoleta;
+    echo "?";
+    echo $boletaRecibida;
+    echo "?";
+    echo $curpRecibido;
+    echo "?\n";
+    echo $alumno->CURP;
+    echo "?";*/
 
-    //Envio pdf
-    $phpmailer = new PHPMailer();
-    $phpmailer->Username = "sistemaequipo3@gmail.com";
-    $phpmailer->Password = "belverlopran123";
-    
-    $phpmailer->IsSMTP();
-    //$phpmailer->SMTPDebug = 2;
-    $phpmailer->SMTPAuth = true;
-    $phpmailer->SMTPSecure = 'tls';
-    $phpmailer->SMTPAutoTLS = false;
-    $phpmailer->Host = 'smtp.gmail.com';
-    $phpmailer->Port = 587;
-    $phpmailer->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-    );
-    $phpmailer->setFrom($phpmailer->Username, "Sistema Nuevo Ingreso ESCOM");
+    if($curpRecibido == $alumno->CURP){
 
-    $phpmailer->AddAddress($alumno->Email);  //$alumno->Email      
-    $phpmailer->Subject = "Comprobante de inscripcion Boleta ".$alumno->NoBoleta;
-    $phpmailer->Body .="<h1 style='color:#952F57;'>¡Bienvenid@ a Escom!</h1><p>";
-    $phpmailer->Body .= "<b>Hola ".$alumno->ApellidoP." ".$alumno->ApellidoM." ".$alumno->Nombre.", este es tu comprobante de inscripción, guardalo por cualquier caso en que este sea solicitado para algun tramite<b>";
-    $phpmailer->AddStringAttachment($pdf->Output('','S'), 'Comprobante.pdf', 'base64', 'application/pdf');
-    $phpmailer->Body .= "</p><p>Este documento fue generado el dia ".date("d/m/Y")." a la hora ".date("h:i:s")."</p>";
-    $phpmailer->IsHTML(true);
+        //Envio pdf
+        $phpmailer = new PHPMailer();
+        $phpmailer->Username = "sistemaequipo3@gmail.com";
+        $phpmailer->Password = "belverlopran123";
+        
+        $phpmailer->IsSMTP();
+        //$phpmailer->SMTPDebug = 2;
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->SMTPSecure = 'tls';
+        $phpmailer->SMTPAutoTLS = false;
+        $phpmailer->Host = 'smtp.gmail.com';
+        $phpmailer->Port = 587;
+        $phpmailer->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        $phpmailer->setFrom($phpmailer->Username, "Sistema Nuevo Ingreso ESCOM");
 
-    if(!$phpmailer->Send()){
-        echo "Mailer Error: " . $phpmailer->ErrorInfo;
+        $phpmailer->AddAddress($alumno->Email);  //$alumno->Email      
+        $phpmailer->Subject = "Comprobante de inscripcion Boleta ".$alumno->NoBoleta;
+        $phpmailer->Body .="<h1 style='color:#952F57;'>¡Bienvenid@ a Escom!</h1><p>";
+        $phpmailer->Body .= "<b>Hola ".$alumno->ApellidoP." ".$alumno->ApellidoM." ".$alumno->Nombre.", este es tu comprobante de inscripción, guardalo por cualquier caso en que este sea solicitado para algun tramite<b>";
+        $phpmailer->AddStringAttachment($pdf->Output('','S'), 'Comprobante.pdf', 'base64', 'application/pdf');
+        $phpmailer->Body .= "</p><p>Este documento fue generado el dia ".date("d/m/Y")." a la hora ".date("h:i:s")."</p>";
+        $phpmailer->IsHTML(true);
+
+        if(!$phpmailer->Send()){
+            echo "Mailer Error: " . $phpmailer->ErrorInfo;
+        }
+
+        //le damos salida en el navegador
+        $pdf ->Output();
     }
-
-	//le damos salida en el navegador
-	$pdf ->Output();
+    else{
+        echo "error";
+    }
 
 ?>

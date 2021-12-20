@@ -5,7 +5,7 @@
         class Conexion {
         public $url = "localhost";
         public $user = "root";
-        public $psw = "28062001**gar";
+        public $psw = "n0m3l0";
         public $bd = "NuevoIngresoESCOM";
         public $port = 3306;
         public $mysqli;
@@ -35,8 +35,8 @@
                 '$alumno->Calle',
                 '$alumno->Colonia',
                 '$alumno->Alcaldia',
-                09100,
-                1234567890,
+                '$alumno->CodigoPostal',
+                '$alumno->Telefono',
                 '$alumno->Email',
                 '$alumno->Escuela',
                 '$alumno->Entidad',
@@ -62,7 +62,7 @@
             self::IniciaConexion();
 
             $alumno = new Alumno();
-            $query = "Call ConsultaAlumnos($boleta)";
+            $query = "Call ConsultaAlumnos('$boleta')";
 
             if($result =  $this->mysqli->query($query)){
                 while ($row = mysqli_fetch_assoc($result)){
