@@ -125,7 +125,36 @@
         }
 
 
+        public function consultarTodosAlumnos(){
 
+            self::IniciaConexion();
+
+            $todosAlumnos;
+            $query = "select * from IdentidadAlumno;";
+
+            if($result =  $this->mysqli->query($query)){
+                $currentIndex = 0;
+                while ($row = mysqli_fetch_assoc($result)){
+
+                    $alumno = new Alumno();
+                    $alumno->NoBoleta = $row['NoBoleta'];  
+                    $alumno->Nombre = $row['Nombre'];
+                    $alumno->ApellidoP = $row['ApellidoP'];
+                    $alumno->ApellidoM = $row['ApellidoM'];
+                    $alumno->FNacimiento= $row['FechaNacimiento'];
+                    $alumno->Genero= $row['Genero'];
+                    $alumno->CURP= $row['CURP'];
+
+                    $todosAlumnos[$currentIndex] = $alumno;
+                    $currentIndex = $currentIndex + 1;
+                }
+            }
+            else{
+                echo "1111";
+                echo ($this->mysqli->error);
+            }
+            return $todosAlumnos;
+        }
 
 		
 	}
