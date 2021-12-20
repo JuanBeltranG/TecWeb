@@ -5,7 +5,7 @@
         class Conexion {
         public $url = "localhost";
         public $user = "root";
-        public $psw = "28062001**gar";
+        public $psw = "dany1905";
         public $bd = "NuevoIngresoESCOM";
         public $port = 3306;
         public $mysqli;
@@ -156,6 +156,28 @@
             return $todosAlumnos;
         }
 
+        public function EliminarAlumno($alumnoE){
+
+            self::IniciaConexion();
+
+            $query = "Call EliminaAlumno('$alumnoE->NoBoleta')";
+
+            //$this->mysqli->query($query);
+
+            if($result = $this->mysqli->query($query)){
+                while ($row = mysqli_fetch_assoc($result)){
+                    $row['mensaje'];
+                    echo '<script>alert("'.$row['mensaje'].'");</script>';
+                    //echo '<script>window.open("GenerarPDF.php","_blank");</script>';
+                    echo '<script>window.location.href="PanelAdmin.php"</script>';
+                }
+            }
+            else{
+                echo ($this->mysqli->error);
+                echo '<script>alert('.$this->mysqli->error.');</script>';
+            }
+            
+        }
 		
 	}
 ?>

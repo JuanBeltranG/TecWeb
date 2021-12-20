@@ -203,7 +203,7 @@ declare idAlumno int;
 			end if;
 select idAlumno as usuario, mjs as mensaje;
 end**
-call ActualizaAlumno(2020630244,'Rodrigo','Lozada','slobotzky','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'juan.beltran2333@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
+call ActualizaAlumno(2020630244,'Rodrigo','Lozada','slobotzky','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'danyvg19@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
 
 
 drop procedure if exists EliminaAlumno;
@@ -217,6 +217,7 @@ begin
     set idAlumno = (select Id_Alumno from IdentidadAlumno where NoBoleta = Boleta);
 		if(existe = 1)then
 			/*elimnar todos los registros de las demas tablas*/
+            delete from AgendaAlumno where Id_Alumno = idAlumno;
 			delete from ProcedenciaAlumno where Id_Alumno = idAlumno;
             delete from ContactoAlumno where Id_Alumno = idAlumno;
             delete from IdentidadAlumno where Id_Alumno = idAlumno;
