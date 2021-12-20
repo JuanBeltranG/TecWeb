@@ -5,7 +5,7 @@
         class Conexion {
         public $url = "localhost";
         public $user = "root";
-        public $psw = "28062001**gar";
+        public $psw = "n0m3l0";
         public $bd = "NuevoIngresoESCOM";
         public $port = 3306;
         public $mysqli;
@@ -96,7 +96,7 @@
             self::IniciaConexion();
 
             $agenda = new Agenda();
-            $query = "Call ConsultaAgendaAlumno($boleta)";
+            $query = "Call ConsultaAgendaAlumno('$boleta')";
 
             if($result =  $this->mysqli->query($query)){
 

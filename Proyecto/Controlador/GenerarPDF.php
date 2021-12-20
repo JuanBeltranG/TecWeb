@@ -247,7 +247,7 @@
         $phpmailer->AddAddress($alumno->Email);  //$alumno->Email      
         $phpmailer->Subject = "Comprobante de inscripcion Boleta ".$alumno->NoBoleta;
         $phpmailer->Body .="<h1 style='color:#952F57;'>¡Bienvenid@ a Escom!</h1><p>";
-        $phpmailer->Body .= "<b>Hola ".$alumno->ApellidoP." ".$alumno->ApellidoM." ".$alumno->Nombre.", este es tu comprobante de inscripción, guardalo por cualquier caso en que este sea solicitado para algun tramite<b>";
+        $phpmailer->Body .= "<b>Hola ".$alumno->ApellidoP." ".$alumno->ApellidoM." ".$alumno->Nombre.", este es tu comprobante de inscripción, guardalo por si acaso este es solicitado para algun tramite<b>";
         $phpmailer->AddStringAttachment($pdf->Output('','S'), 'Comprobante.pdf', 'base64', 'application/pdf');
         $phpmailer->Body .= "</p><p>Este documento fue generado el dia ".date("d/m/Y")." a la hora ".date("h:i:s")."</p>";
         $phpmailer->IsHTML(true);
@@ -260,7 +260,9 @@
         $pdf ->Output();
     }
     else{
-        echo "error";
+        echo '<script>alert("Los datos ingresados son errones, por favor verificalos");</script>';
+        //echo '<script>window.open("GenerarPDF.php","_blank");</script>';
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
     }
 
 ?>
