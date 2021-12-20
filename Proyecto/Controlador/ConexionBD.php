@@ -129,7 +129,7 @@
 
             self::IniciaConexion();
 
-            $todosAlumnos;
+            $todosAlumnos=[];
             $query = "select * from IdentidadAlumno;";
 
             if($result =  $this->mysqli->query($query)){
