@@ -108,11 +108,31 @@
     </header>
     EOT;
 
+    echo "<b>Numero Boleta :</b> $alumnor->NoBoleta <br/>";
+    echo "<b>Nombre(s) :</b> $alumnor->Nombre <br/>";
+    echo "<b>Apellido Paterno :</b> $alumnor->ApellidoP <br/>";
+    echo "<b>Apellido Materno :</b> $alumnor->ApellidoM <br/>";
+    echo "<b>Fecha Nacimiento :</b> $alumnor->FNacimiento <br/>";
+    echo "<b>Genero :</b> $alumnor->Genero <br/>";
+    echo "<b>CURP :</b> $alumnor->CURP <br/>";
+    echo "<b>Calle :</b> $alumnor->Calle <br/>";
+    echo "<b>Colonia :</b> $alumnor->Colonia <br/>";
+    echo "<b>Alcaldia :</b> $alumnor->Alcaldia <br/>";
+    echo "<b>Codigo Postal :</b> $alumnor->CodigoPostal <br/>";
+    echo "<b>Telefono :</b> $alumnor->Telefono <br/>";
+    echo "<b>Email :</b> $alumnor->Email <br/>";
+    echo "<b>Escuela :</b> $alumnor->Escuela <br/>";
+    echo "<b>Entidad :</b> $alumnor->Entidad <br/>";
+    echo "<b>Promedio :</b> $alumnor->Promedio <br/>";
+    echo "<b>Opcion de ESCOM :</b> $alumnor->NumeroOp <br/>";
+
+    echo"<form  method='POST' action='registrarAlumno.php'>
+			<input type='submit' value='Registrar Información' name='Aceptar' class='button'>
+		</form>";
     
-
-
-    echo "<b>Nombre(s) :</b> $alumnor->Nombre <br/>";
-    echo "<b>Nombre(s) :</b> $alumnor->Nombre <br/>";
+    echo"<form  method='POST' action='EditarInfo.php'>
+			<input type='submit' value='Modificar Información' name='Aceptar' class='button'>
+		</form>";
 
     echo <<<EOT
     </body>
