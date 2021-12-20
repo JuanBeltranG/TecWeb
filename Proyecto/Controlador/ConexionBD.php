@@ -1,11 +1,12 @@
 <?php
 	include("../Modelo/Alumno.php");
     include("../Modelo/Agenda.php");
+    include("../Modelo/Administrador.php");
 
         class Conexion {
         public $url = "localhost";
         public $user = "root";
-        public $psw = "28062001**gar";
+        public $psw = "n0m3l0";
         public $bd = "NuevoIngresoESCOM";
         public $port = 3306;
         public $mysqli;
@@ -181,6 +182,31 @@
                 echo '<script>alert('.$this->mysqli->error.');</script>';
             }
             
+        }
+
+        public function consultarAdmin($correoAdmin, $contraAdmin){
+
+            self::IniciaConexion();
+
+            $Admin = new Administrador();
+            $query = "select * from Administrador where binary Correo = '$correoAdmin' and binary Contra = '$contraAdmin';";
+
+            if($result =  $this->mysqli->query($query)){
+                while ($row = mysqli_fetch_assoc($result)){
+
+                    $Admin->Correo = $row['Correo'];  
+                    $Admin->Contra = $row['Contra'];  
+                    $Admin->Nombre = $row['Nombre'];
+                    $Admin->ApellidoP = $row['ApellidoP'];
+                    $Admin->ApellidoM = $row['ApellidoM'];
+                }
+            }
+            else{
+                echo "1111";
+                echo ($this->mysqli->error);
+            }
+
+            return $Admin;
         }
 		
 	}
