@@ -2,9 +2,9 @@
     include("ConexionBD.php");
 
     $conexion = new Conexion();
-
     $alumnor = new Alumno();
 
+    session_start();
     //Informacion personal 
     $alumnor->NoBoleta = $_POST["boleta"];
     $alumnor->Nombre = $_POST["nombre"];
@@ -26,8 +26,7 @@
     $alumnor->Promedio = $_POST["promedio"];
     $alumnor->NumeroOp = $_POST["EscomOpcion"];
 
-    session_start();
-
+    
 	if(isset($_SESSION["AlumnoSesion"])){
 		unset($_SESSION['AlumnoSesion']);
 	}
@@ -38,6 +37,12 @@
 	session_write_close();
 
 
+    if($_SESSION["PermisoEdicion"]== false){
+        unset($_SESSION['AlumnoSesion']);
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+
+    
 ?> 
 
 <!doctype html>
@@ -98,7 +103,7 @@
                     </div>
                     <div class="col-sm-4 offset-md-1 py-4">
                         <div class="d-grid gap-2">
-                           <button type="button" class="btn btn-danger" onclick="location.href='index.html'">Cancelar confirmación </button>
+                           <button type="button" class="btn btn-danger" onclick="location.href='CancelarRegistro.php'">Cancelar confirmación </button>
                         </div>
                     </div>
                 </div>

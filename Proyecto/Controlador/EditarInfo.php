@@ -4,11 +4,24 @@
 
     session_start();
 
-    if(isset($_SESSION["AlumnoSesion"]) && $_SESSION["PermisoEdicion"]== true ){
-        
-    }
-    $alumnor = $_SESSION["AlumnoSesion"];
+    $alumnor = new Alumno();
 
+     //En caso de que el usuario necesite regresar a editar su informacion
+     //Se revisa que el objeto del alumno no este vacio
+     //Se revisa que el permiso para editar sea true
+    if(isset($_SESSION["AlumnoSesion"]) && $_SESSION["PermisoEdicion"]== true ){
+
+        $alumnor = $_SESSION["AlumnoSesion"];
+
+    //En caso de que el usuario ya no tenga permitido editar sus datos (por que ya concluyo el registroo lo termino)
+    //Se revisa que el permiso para editar sea falso
+    }else if($_SESSION["PermisoEdicion"]== false){
+        unset($_SESSION['AlumnoSesion']);
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+   
+    //Variable para en caso de que se haya registrado otra escuela diferente a las dadas por el select
+    //Pongamos nuestro select en valor "otra" y el valor en input text de "otra escuela"
     $otra= true; 
 
 ?>
@@ -72,7 +85,7 @@
                     </div>
                     <div class="col-sm-4 offset-md-1 py-4">
                         <div class="d-grid gap-2">
-                           <button type="button" class="btn btn-danger" onclick="location.href='index.html'">Cancelar </button>
+                           <button type="button" class="btn btn-danger" onclick="location.href='CancelarRegistro.php'">Cancelar </button>
                         </div>
                     </div>
                 </div>
@@ -358,6 +371,7 @@
 
                 <input type="hidden" id="EscomOpcion" name="EscomOpcion">
                 <input type="hidden" id="EscuelaProcedencia" name="EscuelaProcedencia">
+                
                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Registrar información">
                 <input type="reset" class="btn btn-secondary btn-lg btn-block" value="Limpiar datos">
 

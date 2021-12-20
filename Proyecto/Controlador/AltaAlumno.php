@@ -11,15 +11,24 @@ $conexion = new Conexion();
 
         if($estadoRegistro == "Alumno registrado"){
 
+            echo '<script>alert("Tu registro se completo, tu PDF se presenta a continuación y se enviara a tu correo");</script>';
+
+            echo "<form name='envia' method='POST' action='GenerarPDF.php'>
+            <input type='hidden' name='BoletaPDF' id='BoletaPDF' value=$alumnor->NoBoleta >
+            <input type='hidden' name='CURPPDF' id='CURPPDF' value=$alumnor->CURP >
+            </form>
+            <script language='JavaScript'>
+                document.envia.submit()
+            </script>";
+
             $_SESSION["PermisoEdicion"] = false;
             unset($_SESSION['AlumnoSesion']);
+            session_destroy();
 
-            echo '<script>alert("Alumno registrado exitosamente");</script>';
-            echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
 
         }else if($estadoRegistro == "Alumno existente"){
-            //echo "mensaje de registro ya existente";
-
+           
+            $_SESSION["PermisoEdicion"] = true;
             echo '<script>alert("La boleta que has ingresado ya ha sido registrada, revisa tu información");</script>';
             echo '<script>window.location.href="EditarInfo.php"</script>';
 
