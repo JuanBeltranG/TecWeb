@@ -2,8 +2,36 @@
 include("ConexionBD.php");
 
 $conexion = new Conexion();
+
+    session_start();
+
+    if(isset($_SESSION["AlumnoSesion"]) && $_SESSION["PermisoEdicion"]== true ){
+        $alumnor = $_SESSION["AlumnoSesion"];
+        $estadoRegistro = $conexion->registrarAlumno($alumnor);
+
+        if($estadoRegistro == "Alumno registrado"){
+
+            $_SESSION["PermisoEdicion"] = false;
+            unset($_SESSION['AlumnoSesion']);
+
+            echo '<script>alert("Alumno registrado exitosamente");</script>';
+            echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+
+        }else if($estadoRegistro == "Alumno existente"){
+            //echo "mensaje de registro ya existente";
+
+            echo '<script>alert("La boleta que has ingresado ya ha sido registrada, revisa tu información");</script>';
+            echo '<script>window.location.href="EditarInfo.php"</script>';
+
+        }
+
+        
+    }
+
     
-$alumnor = new Alumno();
+   
+
+/*$alumnor = new Alumno();
 $alumnor->NoBoleta = $_POST["boleta"];
 $alumnor->Nombre = $_POST["nombre"];
 $alumnor->ApellidoP = $_POST["apellido_p"];
@@ -22,8 +50,8 @@ $alumnor->Email = $_POST["correo"];
 $alumnor->Escuela = $_POST["EscuelaProcedencia"];
 $alumnor->Entidad = $_POST["entidad_procedencia"];
 $alumnor->Promedio = $_POST["promedio"];
-$alumnor->NumeroOp = $_POST["EscomOpcion"];
+$alumnor->NumeroOp = $_POST["EscomOpcion"];*/
 
-$conexion->registrarAlumno($alumnor);
+
 	
 ?>

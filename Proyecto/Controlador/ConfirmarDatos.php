@@ -34,6 +34,7 @@
 
 	$_SESSION["AlumnoSesion"]=$alumnor;
 	$_SESSION["PermisoEdicion"] = true;
+    
 	session_write_close();
 
 
@@ -126,6 +127,7 @@
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <bold>
                         <h2>Confirmar información</h2>
+                        <p>Hola <?php echo $alumnor->Nombre; ?>, verifica que los datos que ingresaste sean correctos: </p>
                     </bold>
                 </div>
             </div>
@@ -306,22 +308,18 @@
 
                     </div>
                 </div>
-
+                <br/>
+                <br/>
                 
-
-                <form  method="POST" action="registrarAlumno.php">
+            </form>
+            <!--Aqui termina el formulario-->
+            <form  method="POST" action="AltaAlumno.php">
 			        <input type="submit"  class="btn btn-primary btn-lg btn-block" value="Datos correctos" style="display: inline-block">
 		        </form>
 
                 <form  method="POST" action="EditarInfo.php">
 			        <input type="submit" class="btn btn-secondary btn-lg btn-block" value="Modificar datos" style="display: inline-block">
 		        </form>
-
-                <br/>
-                <br/>
-                
-            </form>
-            <!--Aqui termina el formulario-->
 
             </div>
             
