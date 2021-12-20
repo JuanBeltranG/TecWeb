@@ -203,7 +203,7 @@ declare idAlumno int;
 			end if;
 select idAlumno as usuario, mjs as mensaje;
 end**
-call ActualizaAlumno(2020630244,'Rodrigo','Lozada','slobotzky','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
+call ActualizaAlumno(2020630244,'Rodrigo','Lozada','slobotzky','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'juan.beltran2333@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
 
 
 drop procedure if exists EliminaAlumno;
