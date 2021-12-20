@@ -20,7 +20,7 @@
 
         public function registrarAlumno($alumno){  
 
-            echo "entro a la funcion registrar alumno";
+            $mensajeRetorno = "";
             
             self::IniciaConexion();
 
@@ -45,17 +45,21 @@
 
             if($result = $this->mysqli->query($query1)){
                 while ($row = mysqli_fetch_assoc($result)){
-                    $row['mensaje'];
-                    echo '<script>alert('.$row['mensaje'].');</script>';
+                    $mensajeRetorno = $row['mensaje'];
+                    
+                    //echo '<script>alert('.$row['mensaje'].');</script>';
                     //echo '<script>window.open("GenerarPDF.php","_blank");</script>';
                     //echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
-
+                    
                 }
             }
             else{
                 echo ($this->mysqli->error);
-                echo '<script>alert('.$this->mysqli->error.');</script>';
+                echo '<script>alert("'.$this->mysqli->error.'");</script>';
             }
+
+            return $mensajeRetorno;
+
         } 
 
         public function consultarAlumno($boleta){
