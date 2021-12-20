@@ -71,7 +71,7 @@
         <div class="col-lg-3 col-md-8 ">
           <h3 class="text-white">Registrar alumno</h3>
         </div>
-        <button class="form-control me-2 btn btn-success btn-lg" type="submit"> Nuevo alumno </button>
+        <button class="form-control me-2 btn btn-success btn-lg" type="button" onclick="location.href='../Vista/Paginas/RegistroDatos.html'"> Nuevo alumno </button>
       </form>  
       <form class="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
         <div class="col-lg-3 col-md-8 ">
@@ -84,55 +84,58 @@
   </section>
 </div>
   <section class="py-4 text-center container"></section>
-    <div class="album py-2">
-      <div class="row py-lg-4">
+      <div class="album py-2">
+        
           <bold><h3 class="text-center">LISTA DE ALUMNOS REGISTRADOS</h3></bold>
-        </div>
+        
       </div> 
-      <div class="container">
-        <table class="table">
-            <thead>
-              <tr class="table-dark ">
-                <th scope="col">Número de boleta</th>
-                <th scope="col">Nombre(s)</th>
-                <th scope="col">Apellido paterno</th>
-                <th scope="col">Apellido materno</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-                <?php
-                    include('ConexionBD.php');
-                    $consulta = new Conexion();
-                    $todosAlumnos = $consulta->consultarTodosAlumnos();
 
-                    foreach($todosAlumnos as $currentAlumno){
+      <div class="container">
+        <div class="table-responsive">
+          <table class="table">
+              <thead>
+                <tr class="table-dark ">
+                  <th scope="col">Número de boleta</th>
+                  <th scope="col">Nombre(s)</th>
+                  <th scope="col">Apellido paterno</th>
+                  <th scope="col">Apellido materno</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                  <?php
+                      include('ConexionBD.php');
+                      $consulta = new Conexion();
+                      $todosAlumnos = $consulta->consultarTodosAlumnos();
+
+                      foreach($todosAlumnos as $currentAlumno){
+                  ?>
+                <tr>
+                  <th scope="row"><?php echo $currentAlumno->NoBoleta;?></th>
+                  <td><?php echo $currentAlumno->Nombre;?></td>
+                  <td><?php echo $currentAlumno->ApellidoP;?></td>
+                  <td><?php echo $currentAlumno->ApellidoM;?></td>
+                  <td class="d-flex justify-content-end">
+                    <form action="" method="post">
+                      <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaConsulta" name="boletaConsulta">
+                      <button class="btn btn-outline-primary btn-sm" type="submit">Consultar</button>
+                    </form>
+                    <form action="" method="post">
+                      <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEditar" name="boletaEditar">
+                      <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
+                    </form>
+                    <form action="" method="post">
+                      <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEliminar" name="boletaEliminar">
+                      <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                    </form>
+                  </td>
+                </tr>
+                <?php
+                      }
                 ?>
-              <tr>
-                <th scope="row"><?php echo $currentAlumno->NoBoleta;?></th>
-                <td><?php echo $currentAlumno->Nombre;?></td>
-                <td><?php echo $currentAlumno->ApellidoP;?></td>
-                <td><?php echo $currentAlumno->ApellidoM;?></td>
-                <td class="d-flex justify-content-end">
-                  <form action="" method="post">
-                    <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaConsulta" name="boletaConsulta">
-                    <button class="btn btn-outline-primary btn-sm" type="submit">Consultar</button>
-                  </form>
-                  <form action="" method="post">
-                    <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEditar" name="boletaEditar">
-                    <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
-                  </form>
-                  <form action="" method="post">
-                    <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEliminar" name="boletaEliminar">
-                    <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
-                  </form>
-                </td>
-              </tr>
-              <?php
-                    }
-              ?>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+         </div>
       </div>
     </div>
   </section>
