@@ -117,7 +117,7 @@
                   <td><?php echo $currentAlumno->ApellidoP;?></td>
                   <td><?php echo $currentAlumno->ApellidoM;?></td>
                   <td class="d-flex justify-content-end">
-                    <form action="" method="post">
+                    <form action="ConsultarAlumno.php" method="post">
                       <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaConsulta" name="boletaConsulta">
                       <button class="btn btn-outline-primary btn-sm" type="submit">Consultar</button>
                     </form>
