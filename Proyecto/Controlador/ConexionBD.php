@@ -95,7 +95,7 @@
             self::IniciaConexion();
 
             $agenda = new Agenda();
-            $query = "Call ConsultaAgendaAlumno($boleta)";
+            $query = "Call ConsultaAgendaAlumno('$boleta')";
 
             if($result =  $this->mysqli->query($query)){
 
