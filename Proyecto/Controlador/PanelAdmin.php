@@ -1,3 +1,59 @@
+<?php
+
+    include("ConexionBD.php");
+
+    $consulta = new Conexion();
+    $Admin;
+    session_start();
+
+    if(isset($_POST["SalirSesion"])){
+      session_destroy();
+      echo '<script>alert("Hasta Luego");</script>';
+      echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+
+    if(!isset($_SESSION["AdminSesion"]) && !isset($_POST["CorreoAdmin"]) && !isset($_POST["ContraAdmin"])){
+      session_destroy();
+      echo '<script>alert("Inicia Sesion antes");</script>';
+      echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+
+    if(isset($_SESSION["AlumnoSesion"])){
+      session_destroy();
+      session_start();
+
+      $Admin = $consulta->consultarAdmin($_POST["CorreoAdmin"], $_POST["ContraAdmin"]);
+
+      if($Admin->Correo == $_POST["CorreoAdmin"] && $Admin->Contra == $_POST["ContraAdmin"]){
+        $_SESSION["AdminSesion"] = $Admin;
+        echo '<script>alert("Bienvenido '.$Admin->Nombre.'");</script>';
+        echo '<script>window.location.href="../Controlador/PanelAdmin.php"</script>';
+      }
+      else{
+        echo '<script>alert("Los datos ingresados son errones, por favor verificalos");</script>';
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+      }
+    }
+    else{
+      if(isset($_SESSION["AdminSesion"])){
+        $Admin = $_SESSION["AdminSesion"];
+      }
+      else{
+        $Admin = $consulta->consultarAdmin($_POST["CorreoAdmin"], $_POST["ContraAdmin"]);
+
+        if($Admin->Correo == $_POST["CorreoAdmin"] && $Admin->Contra == $_POST["ContraAdmin"]){
+          $_SESSION["AdminSesion"] = $Admin;
+          echo '<script>alert("Bienvenido '.$Admin->Nombre.'");</script>';
+          echo '<script>window.location.href="../Controlador/PanelAdmin.php"</script>';
+        }
+        else{
+          echo '<script>alert("Los datos ingresados son errones, por favor verificalos");</script>';
+          echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+        }
+      }
+    }
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -36,7 +92,10 @@
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <div class="d-grid gap-2">
-            <button class="btn btn-danger" type="button">Salir</button>
+            <form id="formSalir" method="post">
+              <input type="hidden" value = "Si" id = "SalirSesion" name = "SalirSesion">
+            </form>
+            <button form="formSalir" class="btn btn-danger" type="submit">Salir</button>
           </div>
         </div>
       </div>
@@ -104,8 +163,6 @@
               </thead>
               <tbody>
                   <?php
-                      include('ConexionBD.php');
-                      $consulta = new Conexion();
                       $todosAlumnos = $consulta->consultarTodosAlumnos();
                       $conteoAlumnos = 0;
                       foreach($todosAlumnos as $currentAlumno){

@@ -2,6 +2,13 @@ drop database if exists NuevoIngresoESCOM;
 create database NuevoIngresoESCOM;
 use NuevoIngresoESCOM;
 
+create table Administrador(
+	Correo varchar(30) not null primary key,
+    Contra varchar(30),
+	Nombre varchar(30),
+	ApellidoP varchar(30),
+	ApellidoM varchar(30)
+);
 
 create table IdentidadAlumno(
 	Id_Alumno int(3) not null auto_increment primary key, /*Prefieren la BOLETA o CURP como PK?*/
