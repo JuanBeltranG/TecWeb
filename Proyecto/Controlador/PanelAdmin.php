@@ -124,7 +124,7 @@
                       <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEditar" name="boletaEditar">
                       <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
                     </form>
-                    <form action="" method="post">
+                    <form action="EliminarAlumno.php" method="post">
                       <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEliminar" name="boletaEliminar">
                       <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
                     </form>
