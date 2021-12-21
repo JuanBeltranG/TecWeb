@@ -132,11 +132,11 @@
         </div>
         <button class="form-control me-2 btn btn-success btn-lg" type="button" onclick="location.href='../Vista/Paginas/RegistroDatos.html'"> Nuevo alumno </button>
       </form>  
-      <form class="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
+      <form class="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm" action="ConsultarAlumno.php" method="post">
         <div class="col-lg-3 col-md-8 ">
           <h3 class="text-white">Buscar alumno</h3>
         </div>
-        <input class="form-control me-2" type="search" placeholder="Número de boleta" aria-label="Search">
+        <input id = "BoletaBuscar1" name = "BoletaBuscar1" class="form-control me-2" type="search" placeholder="Número de boleta" aria-label="Search">
         <button class="btn btn-success " type="submit">Buscar</button>
       </form>
     </div>

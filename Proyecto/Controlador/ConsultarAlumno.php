@@ -7,10 +7,22 @@
     
 	$agendaAlum = new Agenda();
 
-    $boletaRecibida = $_POST["boletaConsulta"];
+    $boletaRecibida;
+
+    if(isset($_POST["boletaConsulta"])){
+        $boletaRecibida = $_POST["boletaConsulta"];
+    }
+    else{
+        $boletaRecibida = $_POST["BoletaBuscar1"];
+    }
 
     $alumnoc = $consulta->consultarAlumno($boletaRecibida);
 	$agendaAlum = $consulta->consultaAgendaAlumno($boletaRecibida);	
+
+    if($boletaRecibida != $alumnoc->NoBoleta or $boletaRecibida == ""){
+        echo '<script>alert("El alumno que busca no esta registrado");</script>';
+        echo '<script>window.location.href="../Controlador/PanelAdmin.php"</script>';
+    }
 
 ?> 
 
