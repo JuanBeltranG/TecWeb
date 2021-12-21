@@ -223,20 +223,30 @@
                                 </div>
                             </div>
 
-                            <select name="cars" id="cars">
-                            <?php
-                                $todosAlumnos = $consulta->consultarTodosAlumnos();
-                                $conteoHorarios = 0;
+                            <div class="col-12">
+                                <label for="NuevoHorario" class="form-label">Horarios disponibles </label>
+                                <small class="text-muted">(Selecciona uno solo en caso de querer modificarlo)</small>
+                                <div class="input-group">
+                                    
+                                <select name="NuevoHorario" id="NuevoHorario" class="form-select">
+                                    <option value="Ninguno" selected >Selecciona un horario disponible</option>
+                                    <?php
+                                        $todosAlumnos = $consulta->consultarTodosAlumnos();
+                                        $conteoHorarios = 0;
 
-                                foreach($horariosDisponibles as $currentHorario){
-                                    $conteoHorarios = $conteoHorarios + 1;
-                            ?>  
-                                  <option value="volvo"><?php echo $currentHorario->IdAgenda; ?></option>
+                                        foreach($horariosDisponibles as $currentHorario){
+                                            $conteoHorarios = $conteoHorarios + 1;
+                                    ?>  
+                                    <option value="<?php echo $currentHorario->IdAgenda; ?>"><?php echo $currentHorario->fecha; ?> / <?php echo $currentHorario->Hora; ?> / <?php echo $currentHorario->NombreLab; ?> </option>
                             
-                            <?php 
-                                }
-                            ?>
+                                    <?php 
+                                        }
+                                    ?>
                             </select>
+                                   
+                                    
+                                </div>
+                            </div>
                             
 
                            
@@ -420,7 +430,7 @@
 
                 <input type="hidden" id="EscomOpcion" name="EscomOpcion">
                 <input type="hidden" id="EscuelaProcedencia" name="EscuelaProcedencia">
-                
+                <input type="hidden" id="AgendaOriginal" name="AgendaOriginal" value=<?php echo $agendaAlum->IdAgenda; ?>>
                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Actualizar información">
                 
 

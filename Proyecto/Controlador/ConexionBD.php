@@ -288,6 +288,26 @@
             }
             return $todosHorarios;
         }
-		
+
+        public function ActualizaHorario($Boleta, $IdAgenda){
+
+            
+            self::IniciaConexion();
+
+            $query1 = "call ModificaAgenda(
+                '$Boleta',
+                $IdAgenda
+                );";
+
+            if($result = $this->mysqli->query($query1)){
+                
+                //echo "se actualizo bien horario";
+            }
+            else{
+                echo ($this->mysqli->error);
+                echo '<script>alert("'.$this->mysqli->error.'");</script>';
+            }
+
+        }
 	}
 ?>

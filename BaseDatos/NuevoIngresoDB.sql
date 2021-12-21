@@ -26,7 +26,7 @@ create table ContactoAlumno(
 	Calle varchar(50), /*Creo que es innecesario el numero*/
     Colonia varchar(50),
     Alcaldia varchar(50),
-    CodigoPostal int(5),
+    CodigoPostal int(5) zerofill,
     Telefono varchar(10),
     Email varchar(50),
     foreign key (Id_Alumno) references IdentidadAlumno (Id_Alumno)
@@ -298,5 +298,29 @@ on Ag.Id_Laboratorio = Lab.Id_Laboratorio;
 end**
 
 call ConsultaHorarios();
+
+
+use NuevoIngresoESCOM;
+drop procedure if exists ModificaAgenda;
+delimiter **
+create procedure ModificaAgenda( in boletaAl varchar(10), in idAgendaNuevo int(1))
+begin
+
+	declare IdAlumnoModifica int(3);
+    declare IdAgendaOriginal int(3);
+    set IdAlumnoModifica = (select Id_Alumno from IdentidadAlumno where NoBoleta = boletaAl);
+    set IdAgendaOriginal = (select Id_Agenda from AgendaAlumno where Id_Alumno = IdAlumnoModifica );
+    
+    IF IdAgendaOriginal != idAgendaNuevo 
+		THEN 
+			delete from AgendaAlumno where Id_Alumno = IdAlumnoModifica;
+            insert into AgendaAlumno(Id_Agenda, Id_Alumno) values (idAgendaNuevo, IdAlumnoModifica);
+	END IF;
+
+end**
+
+Call ModificaAgenda(2020630244, 2);
+
+
 
 

@@ -26,7 +26,17 @@
     $alumnor->Promedio = $_POST["promedio"];
     $alumnor->NumeroOp = $_POST["EscomOpcion"];
 
+    $IdNuevoHorario = $_POST["NuevoHorario"];
+    $IdHorarioOriginal = $_POST["AgendaOriginal"];
+
     $mensaje = $actualiza->actualizaAlumno($alumnor);
+
+    if($IdNuevoHorario != "Ninguno"){
+
+        $actualiza->ActualizaHorario($alumnor->NoBoleta, $IdNuevoHorario);
+
+    }
+
 
     if($mensaje == "Alumno Actualizado"){
        
