@@ -135,9 +135,9 @@ declare AlumnosAgendados int;
 					
 					/* Registros de horarios y laboratorios*/
 					set i=1;
-					myloop : while i <= 18 do
+					myloop : while i <= (select count(*) from Agenda) do
 						set AlumnosAgendados = (select count(*) from AgendaAlumno where Id_Agenda = i);
-						if(AlumnosAgendados < 30)then
+						if(AlumnosAgendados < 3)then
 								insert into AgendaAlumno (Id_Alumno,Id_Agenda) values (idAlumno,i);
 								leave myloop;
 						else 
@@ -324,9 +324,10 @@ begin
 
 end**
 
-Call ModificaAgenda(2020630244, 2);
+/*Call ModificaAgenda(2020630244, 2);*/
 
 insert into Administrador(Correo, Contra, Nombre, ApellidoP, ApellidoM) values ("juan@gmail.com", "123", "Juan", "Beltran", "Garcia");
 
 
 select * from IdentidadAlumno;
+select * from AgendaAlumno;

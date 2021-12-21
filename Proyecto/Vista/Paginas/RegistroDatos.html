@@ -142,25 +142,10 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="alcaldia" class="form-label">Alcaldía</label>
-                                <select class="form-select" name="alcaldia" id="alcaldia" required>
-                                    <option value="Ninguna" selected disabled>Seleccione una alcaldia</option>
-                                    <option value="Azcapotzalco">Azcapotzalco</option>
-                                    <option value="Álvaro Obregón">Álvaro Obregón</option>
-                                    <option value="Benito Juárez">Benito Juárez</option>
-                                    <option value="Coyoacán">Coyoacán</option>
-                                    <option value="Cuajimalpa de Morelos">Cuajimalpa de Morelos</option>
-                                    <option value="Cuauhtémoc">Cuauhtémoc</option>
-                                    <option value="Gustavo A. Madero">Gustavo A. Madero</option>
-                                    <option value="Iztacalco">Iztacalco</option>
-                                    <option value="Iztapalapa">Iztapalapa</option>
-                                    <option value="Magdalena Contreras">Magdalena Contreras</option>
-                                    <option value="Milpa Alta">Milpa Alta</option>
-                                    <option value="Tlalpan">Tlalpan</option>
-                                    <option value="Tláhuac">Tláhuac</option>
-                                    <option value="Venustiano Carranza">Venustiano Carranza</option>
-                                    <option value="Xochimilco">Xochimilco</option>
-                                </select>
+                                <label for="alcaldia" class="form-label">Alcaldía / Municipio</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="alcaldia" name="alcaldia" placeholder="ej. Iztapalapa" maxlength="50" onkeyup="alfanumericoYEspaciosYPuntos('alcaldia')" required>
+                                </div>
                             </div>
 
                             <div class="col-12">
@@ -254,7 +239,7 @@
                                         <option value="BAJACALIFORNIASUR">BAJA CALIFORNIA SUR</option>
                                         <option value="CAMPECHE">CAMPECHE</option>
                                         <option value="COAHUILA">COAHUILA</option>
-                                        <option value="COLIMA">COLIMA</option>
+                                        <option value=" ">COLIMA</option>
                                         <option value="CHIAPAS">CHIAPAS</option>
                                         <option value="CHIHUAHUA">CHIHUAHUA</option>
                                         <option value="CDMX">CDMX</option>
@@ -288,7 +273,7 @@
                                     <label for="escuela_procedencia" class="form-label">Escuela de procedencia</label>
                                     <select class="form-select" name="escuela_procedencia" id="escuela_procedencia" onchange="checaOtra()" required>
                                         <option value="Ninguna" selected disabled>Selecione su escuela de procedencia</option>
-                                        <option value="CECyT 1 González Vázquez Vega">CECyT 1 “González Vázquez Vega”</option>
+                                        <option value=" ">CECyT 1 “González Vázquez Vega”</option>
                                         <option value="CECyT 2 Miguel Bernard">CECyT 2 "Miguel Bernard"</option>
                                         <option value="CECyT 3 Estanislao Ramírez Ruiz">CECyT 3 "Estanislao Ramírez Ruiz"</option>
                                         <option value="CECyT 4 Lázaro Cárdenas">CECyT 4 "Lázaro Cárdenas"</option>

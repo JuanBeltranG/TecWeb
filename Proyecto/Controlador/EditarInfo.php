@@ -169,26 +169,12 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="alcaldia" class="form-label">Alcaldia</label>
-                                <select class="form-select" name="alcaldia" id="alcaldia" required>
-                                    <option value="Ninguna" selected disabled>Seleccione una alcaldia</option>
-                                    <option value="Azcapotzalco" <?php echo ($alumnor->Alcaldia=='Azcapotzalco'?"selected":"");  ?> >Azcapotzalco</option>
-                                    <option value="Álvaro Obregón" <?php echo ($alumnor->Alcaldia=='Álvaro Obregón'?"selected":""); ?> >Álvaro Obregón</option>
-                                    <option value="Benito Juárez" <?php echo ($alumnor->Alcaldia=='Benito Juárez'?"selected":""); ?> >Benito Juárez</option>
-                                    <option value="Coyoacán" <?php echo ($alumnor->Alcaldia=='Coyoacán'?"selected":""); ?> >Coyoacán</option>
-                                    <option value="Cuajimalpa de Morelos" <?php echo ($alumnor->Alcaldia=='Cuajimalpa de Morelos'?"selected":""); ?> >Cuajimalpa de Morelos</option>
-                                    <option value="Cuauhtémoc" <?php echo ($alumnor->Alcaldia=='Cuauhtémoc'?"selected":""); ?> >Cuauhtémoc</option>
-                                    <option value="Gustavo A. Madero" <?php echo ($alumnor->Alcaldia=='Gustavo A. Madero'?"selected":""); ?> >Gustavo A. Madero</option>
-                                    <option value="Iztacalco" <?php echo ($alumnor->Alcaldia=='Iztacalco'?"selected":""); ?> >Iztacalco</option>
-                                    <option value="Iztapalapa" <?php echo ($alumnor->Alcaldia=='Iztapalapa'?"selected":""); ?> >Iztapalapa</option>
-                                    <option value="Magdalena Contreras" <?php echo ($alumnor->Alcaldia=='Magdalena Contreras'?"selected":""); ?> >Magdalena Contreras</option>
-                                    <option value="Milpa Alta" <?php echo ($alumnor->Alcaldia=='Milpa Alta'?"selected":""); ?> >Milpa Alta</option>
-                                    <option value="Tlalpan" <?php echo ($alumnor->Alcaldia=='Tlalpan'?"selected":""); ?> >Tlalpan</option>
-                                    <option value="Tláhuac" <?php echo ($alumnor->Alcaldia=='Tláhuac'?"selected":""); ?> >Tláhuac</option>
-                                    <option value="Venustiano Carranza" <?php echo ($alumnor->Alcaldia=='Venustiano Carranza'?"selected":""); ?> >Venustiano Carranza</option>
-                                    <option value="Xochimilco" <?php echo ($alumnor->Alcaldia=='Xochimilco'?"selected":""); ?> >Xochimilco</option>
-                                </select>
+                                <label for="alcaldia" class="form-label">Alcaldía / Municipio</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="alcaldia" name="alcaldia" value="<?php echo $alumnor->Alcaldia;?>" placeholder="ej. Iztapalapa" maxlength="50" onkeyup="alfanumericoYEspaciosYPuntos('alcaldia')" required>
+                                </div>
                             </div>
+                            
 
                             <div class="col-12">
                                 <label for="cp" class="form-label">Codigo Postal</label>

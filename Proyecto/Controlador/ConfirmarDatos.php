@@ -185,7 +185,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="alcaldia" class="form-label"><strong>Alcaldía</strong></label>
+                                <label for="alcaldia" class="form-label"><strong>Alcaldía / Municipio</strong></label>
                                 <div>
                                     <p><?php echo $alumnor->Alcaldia; ?></p>
                                 </div>
