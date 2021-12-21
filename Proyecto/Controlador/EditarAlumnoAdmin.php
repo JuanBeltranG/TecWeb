@@ -1,30 +1,22 @@
-<?php
+<?php 
 
     include("ConexionBD.php");
 
-    session_start();
+    $boletaEditar = $_POST["boletaEditar"];
 
+    $consulta = new Conexion();
+    
     $alumnor = new Alumno();
+	$agendaAlum = new Agenda();
 
-     //En caso de que el usuario necesite regresar a editar su informacion
-     //Se revisa que el objeto del alumno no este vacio
-     //Se revisa que el permiso para editar sea true
-    if(isset($_SESSION["AlumnoSesion"]) && $_SESSION["PermisoEdicion"]== true ){
+    $alumnor = $consulta->consultarAlumno($boletaEditar);
+	$agendaAlum = $consulta->consultaAgendaAlumno($boletaEditar);	
+    $horariosDisponibles = $consulta->ConsultaAgenda();	
+    
 
-        $alumnor = $_SESSION["AlumnoSesion"];
-
-    //En caso de que el usuario ya no tenga permitido editar sus datos (por que ya concluyo el registroo lo termino)
-    //Se revisa que el permiso para editar sea falso
-    }else if($_SESSION["PermisoEdicion"]== false){
-        unset($_SESSION['AlumnoSesion']);
-        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
-    }
-   
-    //Variable para en caso de que se haya registrado otra escuela diferente a las dadas por el select
-    //Pongamos nuestro select en valor "otra" y el valor en input text de "otra escuela"
-    $otra= true; 
-
+    $otra= true;
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -113,7 +105,7 @@
             <div class="row py-lg-2">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <bold>
-                        <h2>Formulario de registro</h2>
+                        <h2>Edición de información</h2>
                     </bold>
                 </div>
             </div>
@@ -124,13 +116,13 @@
 
             <!--Aqui empieza el formulario-->
 
-            <form method="post" action="ConfirmarDatos.php" onsubmit="return validarRegistroDatos()">
+            <form method="post" action="ActualizaAlumno.php" onsubmit="return validarRegistroDatos()">
 
                 <div class="row g-5">
 
                      <!--Seccion de contacto-->
                     
-                    <div class="col-md-5 col-lg-4 order-md-last">
+                    <div class="col-md-6 col-lg-6 order-md-last">
                         <br/>
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-primary">Contacto</span>
@@ -138,7 +130,7 @@
                         <hr class="my-4">
                         <div class="row g-3">
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="username" class="form-label">Correo electronico</label>
                                 <div class="input-group">
                                     <span class="input-group-text"> @ </span>
@@ -146,7 +138,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="telefono" class="form-label">Telefono o celular</label>
                                 <div class="input-group">
                                     <span class="input-group-text"> # </span>
@@ -154,21 +146,21 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="calle" class="form-label">Calle y Numero</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="calle" name="calle" placeholder="ej. Algebra #55" maxlength="50" onkeyup="alfanumericoYEspaciosYPuntos('calle')" value="<?php echo $alumnor->Calle; ?>" required>
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="username" class="form-label">Colonia</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="colonia" name="colonia" placeholder="ej. Juan Escutia" maxlength="50" value="<?php echo $alumnor->Colonia; ?>" onkeyup="alfanumericoYEspaciosYPuntos('colonia')" required>
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="alcaldia" class="form-label">Alcaldia</label>
                                 <select class="form-select" name="alcaldia" id="alcaldia" required>
                                     <option value="Ninguna" selected disabled>Seleccione una alcaldia</option>
@@ -190,7 +182,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="cp" class="form-label">Codigo Postal</label>
                                 <div class="input-group">
                                     <span class="input-group-text"> # </span>
@@ -198,12 +190,79 @@
                                 </div>
                             </div>
 
-                        </div>  
+                        </div> 
+                        <br/>
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-primary">Agenda de examen</span>
+                        </h4>
+                        <hr class="my-4">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label for="despliegaHorario" class="form-label">Hora y fecha </label>
+                                <div class="input-group">
+                                    <span class="input-group-text"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                        <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+                                        <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+                                        </svg>
+                                    </span>
+                                    <input class="form-control" type="text" id="despliegaHorario" name="despliegaHorario" value="<?php echo $agendaAlum->Hora; ?> - <?php echo $agendaAlum->fecha; ?>" disabled >
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="despliegaHorario" class="form-label">Laboratorio y Edificio</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16">
+                                        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                                        </svg></span>
+                                    <input class="form-control" type="text" id="despliegaHorario" name="despliegaHorario" value="<?php echo $agendaAlum->NombreLab; ?> - <?php echo $agendaAlum->EdificioLab; ?> " disabled >
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="NuevoHorario" class="form-label">Horarios disponibles </label>
+                                <small class="text-muted">(Selecciona uno solo en caso de querer modificarlo)</small>
+                                <div class="input-group">
+                                    
+                                <select name="NuevoHorario" id="NuevoHorario" class="form-select">
+                                    <option value="Ninguno" selected >Selecciona un horario disponible</option>
+                                    <?php
+                                        $todosAlumnos = $consulta->consultarTodosAlumnos();
+                                        $conteoHorarios = 0;
+
+                                        foreach($horariosDisponibles as $currentHorario){
+                                            $conteoHorarios = $conteoHorarios + 1;
+                                    ?>  
+                                    <option value="<?php echo $currentHorario->IdAgenda; ?>"><?php echo $currentHorario->fecha; ?> / <?php echo $currentHorario->Hora; ?> / <?php echo $currentHorario->NombreLab; ?> </option>
+                            
+                                    <?php 
+                                        }
+                                    ?>
+                            </select>
+                                   
+                                    
+                                </div>
+                            </div>
+                            
+
+                           
+
+                           
+
+                            
+
+                            
+
+                        </div>   
                     </div>
 
 
                     <!--Seccion de Identidad-->
-                    <div class="col-md-7 col-lg-8">
+                    <div class="col-md-6 col-lg-6">
                         <br />
                         <h4 class="mb-3 text-primary" >Identidad</h4>
                         <hr class="my-4">
@@ -313,7 +372,7 @@
 
                                 
 
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label for="escuela_procedencia" class="form-label">Escuela de procedencia</label>
                                     <select class="form-select" name="escuela_procedencia" id="escuela_procedencia" onchange="checaOtra()" required>
                                         <option value="Ninguna" selected disabled>Selecione su escuela de procedencia</option>
@@ -371,9 +430,9 @@
 
                 <input type="hidden" id="EscomOpcion" name="EscomOpcion">
                 <input type="hidden" id="EscuelaProcedencia" name="EscuelaProcedencia">
+                <input type="hidden" id="AgendaOriginal" name="AgendaOriginal" value=<?php echo $agendaAlum->IdAgenda; ?>>
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Actualizar información">
                 
-                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Registrar información">
-                <input type="reset" class="btn btn-secondary btn-lg btn-block" value="Limpiar datos">
 
                 <br/>
                 <br/>
@@ -397,4 +456,3 @@
 </body>
 
 </html>
-

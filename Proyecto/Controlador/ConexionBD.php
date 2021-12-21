@@ -179,7 +179,7 @@
             }
             else{
                 echo ($this->mysqli->error);
-                echo '<script>alert('.$this->mysqli->error.');</script>';
+                echo '<script>alert("'.$this->mysqli->error.'");</script>';
             }
             
         }
@@ -208,6 +208,106 @@
 
             return $Admin;
         }
-		
+
+
+        public function actualizaAlumno($alumno){
+
+            $mensajeRetorno = "";
+            
+            self::IniciaConexion();
+
+            $query1 = "call ActualizaAlumno(
+                '$alumno->NoBoleta',
+                '$alumno->Nombre',
+                '$alumno->ApellidoP',
+                '$alumno->ApellidoM',
+                '$alumno->FNacimiento',
+                '$alumno->Genero',
+                '$alumno->CURP',
+                '$alumno->Calle',
+                '$alumno->Colonia',
+                '$alumno->Alcaldia',
+                '$alumno->CodigoPostal',
+                '$alumno->Telefono',
+                '$alumno->Email',
+                '$alumno->Escuela',
+                '$alumno->Entidad',
+                '$alumno->Promedio',
+                '$alumno->NumeroOp');";
+
+            if($result = $this->mysqli->query($query1)){
+                while ($row = mysqli_fetch_assoc($result)){
+                    $mensajeRetorno = $row['mensaje'];
+                    
+                    //echo '<script>alert('.$row['mensaje'].');</script>';
+                    //echo '<script>window.open("GenerarPDF.php","_blank");</script>';
+                    //echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+                    
+                }
+            }
+            else{
+                echo ($this->mysqli->error);
+                echo '<script>alert("'.$this->mysqli->error.'");</script>';
+            }
+
+            return $mensajeRetorno;
+
+
+        }
+
+
+        public function ConsultaAgenda(){
+
+            self::IniciaConexion();
+
+            $todosHorarios=[];
+            $query = "Call ConsultaHorarios();";
+
+            if($result =  $this->mysqli->query($query)){
+                $currentIndex = 0;
+                while ($row = mysqli_fetch_assoc($result)){
+
+                    $Horario = new Agenda();
+                    $Horario->IdAgenda = $row['Id_Agenda'];  
+                    $Horario->IdLab = $row['Id_Laboratorio'];
+                    $Horario->NombreLab = $row['Nombre'];
+                    $Horario->EdificioLab = $row['Edificio'];
+                    $Horario->Hora= $row['Hora'];
+                    $Horario->fecha= $row['fecha'];
+                    $NumRegistrados = $row['Registrados'];
+
+                    if($NumRegistrados <= 30){
+                        $todosHorarios[$currentIndex] = $Horario;
+                        $currentIndex = $currentIndex + 1;
+                    }  
+                }
+            }
+            else{
+               
+                echo ($this->mysqli->error);
+            }
+            return $todosHorarios;
+        }
+
+        public function ActualizaHorario($Boleta, $IdAgenda){
+
+            
+            self::IniciaConexion();
+
+            $query1 = "call ModificaAgenda(
+                '$Boleta',
+                $IdAgenda
+                );";
+
+            if($result = $this->mysqli->query($query1)){
+                
+                //echo "se actualizo bien horario";
+            }
+            else{
+                echo ($this->mysqli->error);
+                echo '<script>alert("'.$this->mysqli->error.'");</script>';
+            }
+
+        }
 	}
 ?>

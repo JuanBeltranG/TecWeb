@@ -287,6 +287,45 @@ end**
 call ConsultaAgendaAlumno("2020630244");
 
 
-select * from IdentidadAlumno;
-select * from ContactoAlumno;
-select * from ProcedenciaAlumno;
+use NuevoIngresoESCOM;
+drop procedure if exists ConsultaHorarios;
+delimiter **
+create procedure ConsultaHorarios( )
+begin
+
+select *, (select count(*) from AgendaAlumno where AgendaAlumno.Id_Agenda = Ag.Id_Agenda) as Registrados
+from Agenda as Ag
+inner join Laboratorios as Lab
+on Ag.Id_Laboratorio = Lab.Id_Laboratorio;
+
+
+
+end**
+
+call ConsultaHorarios();
+
+
+use NuevoIngresoESCOM;
+drop procedure if exists ModificaAgenda;
+delimiter **
+create procedure ModificaAgenda( in boletaAl varchar(10), in idAgendaNuevo int(1))
+begin
+
+	declare IdAlumnoModifica int(3);
+    declare IdAgendaOriginal int(3);
+    set IdAlumnoModifica = (select Id_Alumno from IdentidadAlumno where NoBoleta = boletaAl);
+    set IdAgendaOriginal = (select Id_Agenda from AgendaAlumno where Id_Alumno = IdAlumnoModifica );
+    
+    IF IdAgendaOriginal != idAgendaNuevo 
+		THEN 
+			delete from AgendaAlumno where Id_Alumno = IdAlumnoModifica;
+            insert into AgendaAlumno(Id_Agenda, Id_Alumno) values (idAgendaNuevo, IdAlumnoModifica);
+	END IF;
+
+end**
+
+Call ModificaAgenda(2020630244, 2);
+
+
+
+

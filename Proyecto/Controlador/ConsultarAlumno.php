@@ -144,49 +144,86 @@
                         <hr class="my-4">
                         <div class="row g-3">
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="username" class="form-label"><strong>Correo electrónico</strong></label>
                                 <div>
                                     <p><?php echo $alumnoc->Email; ?></p>
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="telefono" class="form-label"><strong>Teléfono o celular</strong></label>
                                 <div>
                                     <p><?php echo $alumnoc->Telefono; ?></p>
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="calle" class="form-label"><strong>Calle y Número</strong></label>
                                 <div>
                                     <p><?php echo $alumnoc->Calle; ?></p>
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="username" class="form-label"><strong>Colonia</strong></label>
                                 <div>
                                     <p><?php echo $alumnoc->Colonia; ?></p>
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="alcaldia" class="form-label"><strong>Alcaldía</strong></label>
                                 <div>
                                     <p><?php echo $alumnoc->Alcaldia; ?></p>
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label for="cp" class="form-label"><strong>Código Postal</strong></label>
                                 <div>
                                     <p><?php echo $alumnoc->CodigoPostal; ?></p>
                                 </div>
                             </div>
 
-                        </div>  
+                        </div>
+
+                        <br/>
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-primary"><strong>Agenda Examen</strong></span>
+                        </h4>
+                        <hr class="my-4">
+                        <div class="row g-3">
+
+                            <div class="col-6">
+                                <label for="username" class="form-label"><strong>Fecha del examen</strong></label>
+                                <div>
+                                    <p><?php echo $agendaAlum->fecha; ?></p>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="telefono" class="form-label"><strong>Hora del examen</strong></label>
+                                <div>
+                                    <p><?php echo $agendaAlum->Hora; ?></p>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="calle" class="form-label"><strong>Laboratorio</strong></label>
+                                <div>
+                                    <p> <?php echo $agendaAlum->NombreLab; ?> </p>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="username" class="form-label"><strong>Edificio</strong></label>
+                                <div>
+                                    <p><?php echo $agendaAlum->EdificioLab; ?></p>
+                                </div>
+                            </div>
+
+                        </div>    
                     </div>
 
 

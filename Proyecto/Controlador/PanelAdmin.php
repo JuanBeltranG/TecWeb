@@ -178,7 +178,7 @@
                       <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaConsulta" name="boletaConsulta">
                       <button class="btn btn-outline-primary btn-sm" type="submit">Consultar</button>
                     </form>
-                    <form action="" method="post">
+                    <form action="EditarAlumnoAdmin.php" method="post">
                       <input type="hidden" value="<?php echo $currentAlumno->NoBoleta;?>" id="boletaEditar" name="boletaEditar">
                       <button class="btn btn-outline-success btn-sm" type="submit">Editar</button>
                     </form>
