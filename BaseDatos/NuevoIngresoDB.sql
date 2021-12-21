@@ -26,7 +26,7 @@ create table ContactoAlumno(
 	Calle varchar(50), /*Creo que es innecesario el numero*/
     Colonia varchar(50),
     Alcaldia varchar(50),
-    CodigoPostal int(5),
+    CodigoPostal int(5) zerofill,
     Telefono varchar(10),
     Email varchar(50),
     foreign key (Id_Alumno) references IdentidadAlumno (Id_Alumno)
@@ -105,7 +105,7 @@ in CurpA nvarchar(18),
 in CalleA nvarchar(50),
 in ColoniaA varchar(50),
 in AlcaldiaA nvarchar(50),
-in codigoPA int(5), 
+in codigoPA int(6), 
 in TelefonoA varchar(10), 
 in CorreoA nvarchar(50),
 in EscuelaPA nvarchar(50),
@@ -119,40 +119,45 @@ declare idAlumno int;
 declare i int;
 declare j int;
 declare AlumnosAgendados int;
-	set existe = (select count(*) from IdentidadAlumno where NoBoleta = Boleta );
+	set existe = (select count(*) from IdentidadAlumno where NoBoleta = Boleta or CURP=CurpA);
 			if(existe = 0)then
-				INSERT INTO IdentidadAlumno(NoBoleta,Nombre,ApellidoP,ApellidoM,FechaNacimiento,Genero,CURP) 
-				values (Boleta,NombreA,ApellidoPA,ApellidoMA,FNacimiento,GeneroA,CurpA);
-                set idAlumno = (select Id_Alumno from IdentidadAlumno where NoBoleta = Boleta);  
-                INSERT INTO ContactoAlumno(Id_Alumno,Calle,Colonia,Alcaldia,CodigoPostal,Telefono,Email) 
-				values (idAlumno,CalleA,ColoniaA,AlcaldiaA,CodigoPA,TelefonoA,CorreoA);
-                INSERT INTO ProcedenciaAlumno(Id_Alumno,Escuela,Entidad,Promedio,NumOpcion) 
-				values (idAlumno,EscuelaPA,EntidadPA,PromedioA,NumeroPA);               
-				set mjs = 'Alumno registrado';
-                
-                /* Registros de horarios y laboratorios*/
-                set i=1;
-                myloop : while i <= 18 do
-					set AlumnosAgendados = (select count(*) from AgendaAlumno where Id_Agenda = i);
-                    if(AlumnosAgendados < 30)then
-							insert into AgendaAlumno (Id_Alumno,Id_Agenda) values (idAlumno,i);
-                            leave myloop;
-					else 
-						set i = i +1;
-                    end if;
-				end while myloop;
-                
+				set existe = (select count(*) from ContactoAlumno where Email = CorreoA);
+                if(existe = 0)then
+					INSERT INTO IdentidadAlumno(NoBoleta,Nombre,ApellidoP,ApellidoM,FechaNacimiento,Genero,CURP) 
+					values (Boleta,NombreA,ApellidoPA,ApellidoMA,FNacimiento,GeneroA,CurpA);
+					set idAlumno = (select Id_Alumno from IdentidadAlumno where NoBoleta = Boleta);  
+					INSERT INTO ContactoAlumno(Id_Alumno,Calle,Colonia,Alcaldia,CodigoPostal,Telefono,Email) 
+					values (idAlumno,CalleA,ColoniaA,AlcaldiaA,CodigoPA,TelefonoA,CorreoA);
+					INSERT INTO ProcedenciaAlumno(Id_Alumno,Escuela,Entidad,Promedio,NumOpcion) 
+					values (idAlumno,EscuelaPA,EntidadPA,PromedioA,NumeroPA);               
+					set mjs = 'Alumno registrado';
+					
+					
+					/* Registros de horarios y laboratorios*/
+					set i=1;
+					myloop : while i <= 18 do
+						set AlumnosAgendados = (select count(*) from AgendaAlumno where Id_Agenda = i);
+						if(AlumnosAgendados < 30)then
+								insert into AgendaAlumno (Id_Alumno,Id_Agenda) values (idAlumno,i);
+								leave myloop;
+						else 
+							set i = i +1;
+						end if;
+					end while myloop;
+                else
+					set mjs = 'Alumno existente';
+                end if;
 			else
 				set mjs = 'Alumno existente';
 			end if;
 select idAlumno as usuario, mjs as mensaje;
 end**
 
-call AltaAlumno(2020630244,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
-call AltaAlumno(2020632344,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
-call AltaAlumno(2021632345,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
-call AltaAlumno(2021632324,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
-call AltaAlumno(2021632314,'Esteban','MonteAlban','Garcia','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'a@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
+call AltaAlumno(2020630244,'Bruno','Diaz','Garcia','03-02-02','Masculino','BDGQWNHSTAPREIQJDA','Calle Miramontes','tlalpan','Iztapalapa',08010,5533422123,'Bruno@gmail.com','CECyT 9 Juan de Dios Bátiz','COLIMA',9.1,1)**
+call AltaAlumno(2020632344,'Eduardo','Torres','López','01-03-01','Masculino','ETLQWNHSTAPREIQJDA','Calle A','Flores','Coyoacán',07010,5533421232,'Eduardo@gmail.com','CECyT 7 Cuauhtémoc','CDMX',8.2,1)**
+call AltaAlumno(2021632345,'Mauricio','Hernandez','Lom','04-04-02','Masculino','MHQLWNHSTAPREIQJDA','Calle 1','Soledad','Benito Juárez',06010,5533422123,'Mauricio@gmail.com','CET 1 Walter Cross Buchanan','GUANAJUATO',7.0,1)**
+call AltaAlumno(2021632324,'Rosa','Lozada','Limon','01-05-01','Femenino','RLLQWNHSTAPREIQJDA','Calle Flores','Lomas','Iztapalapa',05010,5533422188,'Sebastian@gmail.com','Bacho 8','HIDALGO',7.5,1)**
+call AltaAlumno(2121632314,'Juan','Gárcia','Gárcia','00-06-02','Masculino','JGGQWNHSTAPREIQJD3','Calle Neza','Delta','Azcapotzalco',01510,5511422123,'Juan2@gmail.com','CECyT 1 González Vázquez Vega','OAXACA',9.6,1)**
 
 
 drop procedure if exists ActualizaAlumno;
@@ -168,7 +173,7 @@ in CurpA nvarchar(18),
 in CalleA nvarchar(50),
 in ColoniaA varchar(50),
 in AlcaldiaA nvarchar(50),
-in codigoPA int(5), 
+in codigoPA int, 
 in TelefonoA varchar(10), 
 in CorreoA nvarchar(50),
 in EscuelaPA nvarchar(50),
@@ -210,7 +215,7 @@ declare idAlumno int;
 			end if;
 select idAlumno as usuario, mjs as mensaje;
 end**
-call ActualizaAlumno(2020630244,'Rodrigo','Lozada','slobotzky','01-01-01','Masculino','LAQQWNHSTAPREIQJDA','Calle 1','Colonia A','Iztapalapa',01010,1234567891,'danyvg19@gmail.com','Bacho','Estado de Mexico',1266.5543,1)**
+call ActualizaAlumno(2020630244,'Rodrigo','Lozada','slobotzky','01-6-06','Masculino','RLSQWNHSTAPREIQJDA','Calle Soledad','Miguel Hidalgo','Iztacalco',01010,1234567891,'danyvg19@gmail.com','UNAM Preparatoria 2','CDMX',8.8,1)**
 
 
 drop procedure if exists EliminaAlumno;
@@ -280,3 +285,8 @@ where AgAl.Id_Alumno = idBusqueda;
 end**
 
 call ConsultaAgendaAlumno("2020630244");
+
+
+select * from IdentidadAlumno;
+select * from ContactoAlumno;
+select * from ProcedenciaAlumno;

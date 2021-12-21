@@ -22,8 +22,8 @@
 	$alumno = new Alumno();
 	$agendaAlum = new Agenda();
 
-    $boletaRecibida = $_POST["BoletaPDF"];
-    $curpRecibido = $_POST["CURPPDF"];
+    $boletaRecibida = $_GET["BoletaPDF"];
+    $curpRecibido = $_GET["CURPPDF"];
 
 	$alumno = $consulta->consultarAlumno($boletaRecibida);
 	$agendaAlum = $consulta->consultaAgendaAlumno($boletaRecibida);	
@@ -256,13 +256,14 @@
             echo "Mailer Error: " . $phpmailer->ErrorInfo;
         }
 
-        //le damos salida en el navegador
-        $pdf ->Output();
+        
+         $pdf ->Output();
+        
     }
     else{
-        echo '<script>alert("Los datos ingresados son errones, por favor verificalos");</script>';
+        echo '<script>alert("Los datos ingresados son erroneos, por favor verificalos");</script>';
         //echo '<script>window.open("GenerarPDF.php","_blank");</script>';
         echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
     }
-
 ?>
+
