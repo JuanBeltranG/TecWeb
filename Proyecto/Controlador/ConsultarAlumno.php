@@ -1,6 +1,14 @@
 <?php 
     include("ConexionBD.php");
 
+    session_start();
+
+    if(!isset($_SESSION["AdminSesion"])){
+      session_destroy();
+      echo '<script>alert("Inicia Sesion antes");</script>';
+      echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+
     $consulta = new Conexion();
     
     $alumnoc = new Alumno();
