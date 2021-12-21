@@ -130,7 +130,7 @@
         <div class="col-lg-3 col-md-8 ">
           <h3 class="text-white">Registrar alumno</h3>
         </div>
-        <button class="form-control me-2 btn btn-success btn-lg" type="button" onclick="location.href='../Vista/Paginas/RegistroDatos.html'"> Nuevo alumno </button>
+        <button class="form-control me-2 btn btn-success btn-lg" type="button" onclick="location.href='../Vista/Paginas/RegistroDatosAdmin.html'"> Nuevo alumno </button>
       </form>  
       <form class="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
         <div class="col-lg-3 col-md-8 ">
