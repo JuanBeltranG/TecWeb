@@ -280,3 +280,26 @@ where AgAl.Id_Alumno = idBusqueda;
 end**
 
 call ConsultaAgendaAlumno("2020630244");
+
+
+use NuevoIngresoESCOM;
+drop procedure if exists ConsultaHorarios;
+delimiter **
+create procedure ConsultaHorarios( )
+begin
+
+select * from Agenda as Ag
+inner join AgendaAlumno as AgAl
+on AgAl.Id_Agenda = Ag.Id_Agenda
+inner join Laboratorios as Lab
+on Ag.Id_Laboratorio = Lab.Id_Laboratorio
+group by AgAl.Id_Agenda
+having count(*) <= 30;
+
+
+
+end**
+
+call ConsultaHorarios();
+
+

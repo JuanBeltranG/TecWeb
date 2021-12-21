@@ -1,7 +1,6 @@
 <?php
 
     class Agenda{
-        
         public $IdAgenda;
         public $IdLab;
         public $NombreLab;
