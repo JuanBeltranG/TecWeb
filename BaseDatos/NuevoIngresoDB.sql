@@ -288,13 +288,10 @@ delimiter **
 create procedure ConsultaHorarios( )
 begin
 
-select * from Agenda as Ag
-inner join AgendaAlumno as AgAl
-on AgAl.Id_Agenda = Ag.Id_Agenda
+select *, (select count(*) from AgendaAlumno where AgendaAlumno.Id_Agenda = Ag.Id_Agenda) as Registrados
+from Agenda as Ag
 inner join Laboratorios as Lab
-on Ag.Id_Laboratorio = Lab.Id_Laboratorio
-group by AgAl.Id_Agenda
-having count(*) <= 30;
+on Ag.Id_Laboratorio = Lab.Id_Laboratorio;
 
 
 

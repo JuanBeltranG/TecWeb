@@ -261,23 +261,25 @@
             self::IniciaConexion();
 
             $todosHorarios=[];
-            $query = "ConsultaHorarios();";
+            $query = "Call ConsultaHorarios();";
 
             if($result =  $this->mysqli->query($query)){
                 $currentIndex = 0;
                 while ($row = mysqli_fetch_assoc($result)){
 
                     $Horario = new Agenda();
-                    $Horario->IdAgenda = $row['NoBoleta'];  
-                    $Horario->IdLab = $row['Nombre'];
-                    $Horario->NombreLab = $row['ApellidoP'];
-                    $Horario->EdificioLab = $row['ApellidoM'];
-                    $Horario->Hora= $row['FechaNacimiento'];
-                    $Horario->Genero= $row['Genero'];
-                    $Horario->fecha= $row['CURP'];
+                    $Horario->IdAgenda = $row['Id_Agenda'];  
+                    $Horario->IdLab = $row['Id_Laboratorio'];
+                    $Horario->NombreLab = $row['Nombre'];
+                    $Horario->EdificioLab = $row['Edificio'];
+                    $Horario->Hora= $row['Hora'];
+                    $Horario->fecha= $row['fecha'];
+                    $NumRegistrados = $row['Registrados'];
 
-                    $todosHorarios[$currentIndex] = $Horario;
-                    $currentIndex = $currentIndex + 1;
+                    if($NumRegistrados <= 30){
+                        $todosHorarios[$currentIndex] = $Horario;
+                        $currentIndex = $currentIndex + 1;
+                    }  
                 }
             }
             else{
@@ -285,8 +287,6 @@
                 echo ($this->mysqli->error);
             }
             return $todosHorarios;
-
-
         }
 		
 	}
