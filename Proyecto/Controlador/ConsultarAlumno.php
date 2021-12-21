@@ -1,16 +1,36 @@
 <?php 
     include("ConexionBD.php");
 
+    session_start();
+
+    if(!isset($_SESSION["AdminSesion"])){
+      session_destroy();
+      echo '<script>alert("Inicia Sesion antes");</script>';
+      echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+
     $consulta = new Conexion();
     
     $alumnoc = new Alumno();
     
 	$agendaAlum = new Agenda();
 
-    $boletaRecibida = $_POST["boletaConsulta"];
+    $boletaRecibida;
+
+    if(isset($_POST["boletaConsulta"])){
+        $boletaRecibida = $_POST["boletaConsulta"];
+    }
+    else{
+        $boletaRecibida = $_POST["BoletaBuscar1"];
+    }
 
     $alumnoc = $consulta->consultarAlumno($boletaRecibida);
 	$agendaAlum = $consulta->consultaAgendaAlumno($boletaRecibida);	
+
+    if($boletaRecibida != $alumnoc->NoBoleta or $boletaRecibida == ""){
+        echo '<script>alert("El alumno que busca no esta registrado");</script>';
+        echo '<script>window.location.href="../Controlador/PanelAdmin.php"</script>';
+    }
 
 ?> 
 
