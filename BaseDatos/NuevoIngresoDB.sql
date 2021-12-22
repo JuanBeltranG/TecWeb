@@ -1,5 +1,5 @@
 drop database if exists NuevoIngresoESCOM;
-create database NuevoIngresoESCOM;
+create database NuevoIngresoESCOM DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 use NuevoIngresoESCOM;
 
 create table Administrador(
@@ -159,9 +159,9 @@ select idAlumno as usuario, mjs as mensaje;
 end**
 
 call AltaAlumno(2020630244,'Bruno','Diaz','Garcia','03-02-02','Masculino','BDGQWNHSTAPREIQJDA','Calle Miramontes','tlalpan','Iztapalapa',08010,5533422123,'Bruno@gmail.com','CECyT 2 "Miguel Bernard"','COLIMA',9.1,1)**
-call AltaAlumno(2020632344,'Eduardo','Torres','Lopez','01-03-01','Masculino','ETLQWNHSTAPREIQJDA','Calle A','Flores','Iztapalapa',07010,5533421232,'Eduardo@gmail.com','CET 1 Walter Cross Buchanan','CDMX',8.2,1)**
+call AltaAlumno(2020632344,'Eduardo','Torres','López','01-03-01','Masculino','ETLQWNHSTAPREIQJDA','Calle A','Flores','Iztapalapa',07010,5533421232,'Eduardo@gmail.com','CET 1 Walter Cross Buchanan','CDMX',8.2,1)**
 call AltaAlumno(2021632345,'Mauricio','Hernandez','Lom','04-04-02','Masculino','MHQLWNHSTAPREIQJDA','Calle 1','Soledad','Azcapotzalco',06010,5533422123,'Mauricio@gmail.com','CET 1 Walter Cross Buchanan','GUANAJUATO',7.0,1)**
-call AltaAlumno(2021632324,'Rosa','Lozada','Limon','01-05-01','Femenino','RLLQWNHSTAPREIQJDA','Calle Flores','Lomas','Iztapalapa',05010,5533422188,'Sebastian@gmail.com','Bacho 8','HIDALGO',7.5,1)**
+call AltaAlumno(2021632324,'Rosa','Lozada','Limón','01-05-01','Femenino','RLLQWNHSTAPREIQJDA','Calle Flores','Lomas','Iztapalapa',05010,5533422188,'Sebastian@gmail.com','Bacho 8','HIDALGO',7.5,1)**
 call AltaAlumno(2121632314,'Juan','Garcia','Garcia','00-06-02','Masculino','JGGQWNHSTAPREIQJD3','Calle Neza','Delta','Azcapotzalco',01510,5511422123,'Juan2@gmail.com','UNAM Preparatoria 6','OAXACA',9.6,1)**
 
 
