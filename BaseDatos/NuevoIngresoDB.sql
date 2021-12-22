@@ -119,36 +119,41 @@ declare idAlumno int;
 declare i int;
 declare j int;
 declare AlumnosAgendados int;
-	set existe = (select count(*) from IdentidadAlumno where NoBoleta = Boleta or CURP=CurpA);
+	set existe = (select count(*) from IdentidadAlumno where NoBoleta = Boleta);
 			if(existe = 0)then
 				set existe = (select count(*) from ContactoAlumno where Email = CorreoA);
                 if(existe = 0)then
-					INSERT INTO IdentidadAlumno(NoBoleta,Nombre,ApellidoP,ApellidoM,FechaNacimiento,Genero,CURP) 
-					values (Boleta,NombreA,ApellidoPA,ApellidoMA,FNacimiento,GeneroA,CurpA);
-					set idAlumno = (select Id_Alumno from IdentidadAlumno where NoBoleta = Boleta);  
-					INSERT INTO ContactoAlumno(Id_Alumno,Calle,Colonia,Alcaldia,CodigoPostal,Telefono,Email) 
-					values (idAlumno,CalleA,ColoniaA,AlcaldiaA,CodigoPA,TelefonoA,CorreoA);
-					INSERT INTO ProcedenciaAlumno(Id_Alumno,Escuela,Entidad,Promedio,NumOpcion) 
-					values (idAlumno,EscuelaPA,EntidadPA,PromedioA,NumeroPA);               
-					set mjs = 'Alumno registrado';
-					
-					
-					/* Registros de horarios y laboratorios*/
-					set i=1;
-					myloop : while i <= (select count(*) from Agenda) do
-						set AlumnosAgendados = (select count(*) from AgendaAlumno where Id_Agenda = i);
-						if(AlumnosAgendados < 3)then
-								insert into AgendaAlumno (Id_Alumno,Id_Agenda) values (idAlumno,i);
-								leave myloop;
-						else 
-							set i = i +1;
-						end if;
-					end while myloop;
+					set existe = (select count(*) from IdentidadAlumno where CURP=CurpA);
+					if(existe = 0)then
+						INSERT INTO IdentidadAlumno(NoBoleta,Nombre,ApellidoP,ApellidoM,FechaNacimiento,Genero,CURP) 
+						values (Boleta,NombreA,ApellidoPA,ApellidoMA,FNacimiento,GeneroA,CurpA);
+						set idAlumno = (select Id_Alumno from IdentidadAlumno where NoBoleta = Boleta);  
+						INSERT INTO ContactoAlumno(Id_Alumno,Calle,Colonia,Alcaldia,CodigoPostal,Telefono,Email) 
+						values (idAlumno,CalleA,ColoniaA,AlcaldiaA,CodigoPA,TelefonoA,CorreoA);
+						INSERT INTO ProcedenciaAlumno(Id_Alumno,Escuela,Entidad,Promedio,NumOpcion) 
+						values (idAlumno,EscuelaPA,EntidadPA,PromedioA,NumeroPA);               
+						set mjs = 'Alumno registrado';
+						
+						
+						/* Registros de horarios y laboratorios*/
+						set i=1;
+						myloop : while i <= (select count(*) from Agenda) do
+							set AlumnosAgendados = (select count(*) from AgendaAlumno where Id_Agenda = i);
+							if(AlumnosAgendados < 3)then
+									insert into AgendaAlumno (Id_Alumno,Id_Agenda) values (idAlumno,i);
+									leave myloop;
+							else 
+								set i = i +1;
+							end if;
+						end while myloop;
+                        else
+                        set mjs = 'CURP de Alumno ya registrado';
+                        end if;
                 else
-					set mjs = 'Alumno existente';
+					set mjs = 'Correo de Alumno ya registrado';
                 end if;
 			else
-				set mjs = 'Alumno existente';
+				set mjs = 'Boleta de Alumno ya registrada';
 			end if;
 select idAlumno as usuario, mjs as mensaje;
 end**
