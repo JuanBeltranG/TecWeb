@@ -56,7 +56,9 @@
             }
             else{
                 echo ($this->mysqli->error);
-                echo '<script>alert("'.$this->mysqli->error.'");</script>';
+                echo '<script>alert("Ocurrio un error al tratar de realizar el alta, intentelo de nuevo");</script>';
+                //echo '<script>alert("La boleta que has ingresado ya ha sido registrada, revisa tu información");</script>';
+                echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
             }
 
             return $mensajeRetorno;
