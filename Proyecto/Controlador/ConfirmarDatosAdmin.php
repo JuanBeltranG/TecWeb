@@ -157,7 +157,7 @@
             <!--Aqui empieza el formulario-->
 
             <form>
-                <div class="row g-5">
+                <div class="row g-4">
 
                      <!--Seccion de contacto-->
                     

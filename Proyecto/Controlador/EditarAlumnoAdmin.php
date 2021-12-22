@@ -118,7 +118,7 @@
 
             <form method="post" action="ActualizaAlumno.php" onsubmit="return validarRegistroDatos()">
 
-                <div class="row g-5">
+                <div class="row g-4">
 
                      <!--Seccion de contacto-->
                     
