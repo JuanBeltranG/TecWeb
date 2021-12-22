@@ -11,7 +11,9 @@
 
     $alumno = $consulta->consultarAlumno($Boleta);
 
-   
+    if(!isset($_POST["BoletaPDF"])){
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
 
     if($alumno->NoBoleta == ""){
         //Si entra a este if significa que el alumno que se busca no esta registrado

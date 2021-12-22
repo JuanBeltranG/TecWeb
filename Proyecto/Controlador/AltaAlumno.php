@@ -35,6 +35,8 @@ $conexion = new Conexion();
         }
 
         
+    }else{
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
     }
 
     
