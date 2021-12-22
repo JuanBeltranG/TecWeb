@@ -358,7 +358,7 @@
                 <input type="hidden" id="EscuelaProcedencia" name="EscuelaProcedencia">
                 
                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Registrar información">
-                <input type="reset" class="btn btn-secondary btn-lg btn-block" value="Limpiar datos">
+                <!--<input type="reset" class="btn btn-secondary btn-lg btn-block" value="Limpiar datos">-->
 
                 <br/>
                 <br/>
