@@ -13,7 +13,7 @@ $conexion = new Conexion();
 
             echo '<script>alert("Tu registro se completo, tu PDF se presenta a continuación y se enviara a tu correo");</script>';
 
-            echo "<form name='envia' method='POST' action='ComprobantePDF.php'>
+            echo "<form name='envia' method='POST' action='ComprobantePDFAdmin.php'>
             <input type='hidden' name='BoletaPDF' id='BoletaPDF' value=$alumnor->NoBoleta >
             <input type='hidden' name='CURPPDF' id='CURPPDF' value=$alumnor->CURP >
             </form>
@@ -23,7 +23,7 @@ $conexion = new Conexion();
 
             $_SESSION["PermisoEdicion"] = false;
             unset($_SESSION['AlumnoSesion']);
-            session_destroy();
+            
 
 
         }else if($estadoRegistro == "Alumno existente"){
