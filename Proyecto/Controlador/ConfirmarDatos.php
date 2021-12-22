@@ -5,6 +5,23 @@
     $alumnor = new Alumno();
 
     session_start();
+
+
+    if(isset($_SESSION["PermisoEdicion"]) && $_SESSION["PermisoEdicion"]== false ){
+        unset($_SESSION['AlumnoSesion']);
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }if(!isset($_POST["boleta"])){
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+
+    
+
+   /* if(isset($_SESSION["AlumnoSesion"]) || $_SESSION["PermisoEdicion"]== false ){
+        unset($_SESSION['AlumnoSesion']);
+        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }*/
+
+
     //Informacion personal 
     $alumnor->NoBoleta = $_POST["boleta"];
     $alumnor->Nombre = $_POST["nombre"];
