@@ -11,11 +11,13 @@
 
     $alumno = $consulta->consultarAlumno($Boleta);
 
+   
+
     if($alumno->NoBoleta == ""){
         //Si entra a este if significa que el alumno que se busca no esta registrado
         echo '<script>alert("Los datos ingresados son erroneos, por favor verificalos");</script>';
         echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
-    }else if($Boleta != $alumno->NoBoleta || $CURP != $alumno->NoBoleta){
+    }else if($Boleta != $alumno->NoBoleta || $CURP != $alumno->CURP){
         //Si entra a este if significara que si encontro la boleta pero los datos no coinciden
         echo '<script>alert("Los datos ingresados son erroneos, por favor verificalos");</script>';
         echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
