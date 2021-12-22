@@ -2,6 +2,19 @@
 
     include("ConexionBD.php");
 
+    session_start();
+
+    if(!isset($_SESSION["AdminSesion"])){
+      session_destroy();
+      echo '<script>alert("Inicia Sesion antes");</script>';
+      echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
+    }
+
+    if(!isset($_POST["boletaEditar"])){
+        echo '<script>alert("Primero debes de selecionar un alumno al cual editar los datos");</script>';
+        echo '<script>window.location.href="../Controlador/PanelAdmin.php"</script>';
+    }
+
     $boletaEditar = $_POST["boletaEditar"];
 
     $consulta = new Conexion();

@@ -210,3 +210,27 @@ function validarRegistroDatos() {
 
     return flag;
 }
+
+function validarRecuperarPDF() {
+    var flag = true;
+
+    // Valida Boleta
+    const validar_boleta = /^((PE)|(PP)|(\d{2}))\d{8}$/;
+    flag = flag && validar_boleta.test(document.getElementById("BoletaPDF").value);
+    if (!flag) {
+        alert("La boleta debe de ser 10 dígitos o dos letras (PE o PP) y 8 dígitos");
+        document.getElementById("BoletaPDF").focus();
+        return flag;
+    }
+
+    // Valida CURP
+    const validar_curp = /^[A-Z]{1}[AEIOU]{1}[A-Z]{2}\d{6}(H|M)[A-Z]{2}[BCDFGHJKLMNPQRSTVWXYZ]{3}[A-Z0-9]{1}\d{1}$/;
+    flag = flag && validar_curp.test(document.getElementById("CURPPDF").value);
+    if (!flag) {
+        alert("El CURP no esta en el formato correcto");
+        document.getElementById("CURPPDF").focus();
+        return flag;
+    }
+
+    return flag;
+}
