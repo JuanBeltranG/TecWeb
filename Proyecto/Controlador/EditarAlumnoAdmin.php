@@ -77,7 +77,7 @@
                     </div>
                     <div class="col-sm-4 offset-md-1 py-4">
                         <div class="d-grid gap-2">
-                           <button type="button" class="btn btn-danger" onclick="location.href='CancelarRegistro.php'">Cancelar </button>
+                           <button type="button" class="btn btn-danger" onclick="location.href='PanelAdmin.php'">Cancelar </button>
                         </div>
                     </div>
                 </div>

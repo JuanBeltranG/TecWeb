@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-sm-4 offset-md-1 py-4">
                         <div class="d-grid gap-2">
-                            <form id="formSalir" method="post" action="PanelAdmin.php">
+                            <form id="formSalir" method="post" action="CancelarRegistroAdmin.php">
                                 <input type="hidden" value = "Si" id = "SalirSesion" name = "SalirSesion">
                                 
                             </form>

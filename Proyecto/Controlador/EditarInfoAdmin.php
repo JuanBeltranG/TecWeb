@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-sm-4 offset-md-1 py-4">
                         <div class="d-grid gap-2">
-                           <button type="button" class="btn btn-danger" onclick="location.href='CancelarRegistro.php'">Cancelar </button>
+                           <button type="button" class="btn btn-danger" onclick="location.href='CancelarRegistroAdmin.php'">Cancelar </button>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
 
             <!--Aqui empieza el formulario-->
 
-            <form method="post" action="ConfirmarDatos.php" onsubmit="return validarRegistroDatos()">
+            <form method="post" action="ConfirmarDatosAdmin.php" onsubmit="return validarRegistroDatos()">
 
                 <div class="row g-5">
 
