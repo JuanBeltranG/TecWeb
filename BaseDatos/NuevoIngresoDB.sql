@@ -158,11 +158,11 @@ declare AlumnosAgendados int;
 select idAlumno as usuario, mjs as mensaje;
 end**
 
-call AltaAlumno(2020630244,'Bruno','Diaz','Garcia','03-02-02','Masculino','BDGQWNHSTAPREIQJDA','Calle Miramontes','tlalpan','Iztapalapa',08010,5533422123,'Bruno@gmail.com','CECyT 2 "Miguel Bernard"','COLIMA',9.1,1)**
-call AltaAlumno(2020632344,'Eduardo','Torres','López','01-03-01','Masculino','ETLQWNHSTAPREIQJDA','Calle A','Flores','Iztapalapa',07010,5533421232,'Eduardo@gmail.com','CET 1 Walter Cross Buchanan','CDMX',8.2,1)**
-call AltaAlumno(2021632345,'Mauricio','Hernandez','Lom','04-04-02','Masculino','MHQLWNHSTAPREIQJDA','Calle 1','Soledad','Azcapotzalco',06010,5533422123,'Mauricio@gmail.com','CET 1 Walter Cross Buchanan','GUANAJUATO',7.0,1)**
-call AltaAlumno(2021632324,'Rosa','Lozada','Limón','01-05-01','Femenino','RLLQWNHSTAPREIQJDA','Calle Flores','Lomas','Iztapalapa',05010,5533422188,'Sebastian@gmail.com','Bacho 8','HIDALGO',7.5,1)**
-call AltaAlumno(2121632314,'Juan','Garcia','Garcia','00-06-02','Masculino','JGGQWNHSTAPREIQJD3','Calle Neza','Delta','Azcapotzalco',01510,5511422123,'Juan2@gmail.com','UNAM Preparatoria 6','OAXACA',9.6,1)**
+call AltaAlumno(2020630244,'Bruno','Diaz','Garcia','03-02-02','Masculino','BDGQWNHSTAPREIQJDA','Miramontes 233','tlalpan','Iztapalapa',08010,5533422123,'Bruno@gmail.com','CECyT 2 "Miguel Bernard"','COLIMA',9.1,1)**
+call AltaAlumno(2020632344,'Eduardo','Torres','Lopez','01-03-01','Masculino','RELS010628HDFLRNA9','Algebra 23','Flores','Iztapalapa',07010,5533421232,'Eduardo@gmail.com','CET 1 Walter Cross Buchanan','CDMX',8.2,1)**
+call AltaAlumno(2021632345,'Mauricio','Hernandez','Lom','04-04-02','Masculino','BEGJ010628HDFLRYA9','Francisco Leiva 33','Soledad','Azcapotzalco',06010,5533422123,'Mauricio@gmail.com','CET 1 Walter Cross Buchanan','GUANAJUATO',7.0,1)**
+call AltaAlumno(2021632324,'Rosa','Lozada','Limon','01-05-01','Femenino','VEGD010519MDFRRNA8','Flores 25','Lomas','Iztapalapa',05010,5533422188,'Sebastian@gmail.com','Bachilleres 8','HIDALGO',7.5,1)**
+call AltaAlumno(2121632314,'Juan','Garcia','Garcia','01-06-02','Masculino','LOLR010830HDFPPDA0','Rey Neza 65','Delta','Azcapotzalco',01510,5511422123,'Juan2@gmail.com','UNAM Preparatoria 6','OAXACA',9.6,1)**
 
 
 drop procedure if exists ActualizaAlumno;
@@ -220,7 +220,7 @@ declare idAlumno int;
 			end if;
 select idAlumno as usuario, mjs as mensaje;
 end**
-call ActualizaAlumno(2020630244,'Rodrigo','Lozada','slobotzky','01-6-06','Masculino','RLSQWNHSTAPREIQJDA','Calle Soledad','Miguel Hidalgo','Iztacalco',01010,1234567891,'danyvg19@gmail.com','UNAM Preparatoria 2','CDMX',8.8,1)**
+call ActualizaAlumno(2020630244,'Rodrigo','Lozada','Slobotzky','01-6-06','Masculino','RELS010628HDFLRNA9','Soledad 555','Miguel Hidalgo','Iztacalco',01010,1234567891,'danyvg19@gmail.com','UNAM Preparatoria 2','CDMX',8.8,1)**
 
 
 drop procedure if exists EliminaAlumno;
@@ -333,6 +333,3 @@ end**
 
 insert into Administrador(Correo, Contra, Nombre, ApellidoP, ApellidoM) values ("juan@gmail.com", "123", "Juan", "Beltran", "Garcia");
 
-
-select * from IdentidadAlumno;
-select * from AgendaAlumno;

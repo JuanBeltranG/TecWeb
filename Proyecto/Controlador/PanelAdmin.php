@@ -26,6 +26,7 @@
 
       if($Admin->Correo == $_POST["CorreoAdmin"] && $Admin->Contra == $_POST["ContraAdmin"]){
         $_SESSION["AdminSesion"] = $Admin;
+        $_SESSION["PermisoEdicion"] = true;
         echo '<script>alert("Bienvenido '.$Admin->Nombre.'");</script>';
         echo '<script>window.location.href="../Controlador/PanelAdmin.php"</script>';
       }
@@ -43,6 +44,7 @@
 
         if($Admin->Correo == $_POST["CorreoAdmin"] && $Admin->Contra == $_POST["ContraAdmin"]){
           $_SESSION["AdminSesion"] = $Admin;
+          $_SESSION["PermisoEdicion"] = true;
           echo '<script>alert("Bienvenido '.$Admin->Nombre.'");</script>';
           echo '<script>window.location.href="../Controlador/PanelAdmin.php"</script>';
         }
