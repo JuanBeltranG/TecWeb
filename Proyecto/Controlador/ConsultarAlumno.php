@@ -144,7 +144,7 @@
                         <hr class="my-4">
                         <div class="row g-3">
 
-                            <div class="col-6">
+                            <div class="col-12">
                                 <label for="username" class="form-label"><strong>Correo electrónico</strong></label>
                                 <div>
                                     <p><?php echo $alumnoc->Email; ?></p>

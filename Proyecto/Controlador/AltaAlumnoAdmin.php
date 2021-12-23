@@ -26,17 +26,23 @@ $conexion = new Conexion();
             
 
 
-        }else if($estadoRegistro == "Alumno existente"){
+        }else if($estadoRegistro == "CURP de Alumno ya registrado"){
            
             $_SESSION["PermisoEdicion"] = true;
+            echo '<script>alert("El CURP que has ingresado ya ha sido registrado, revisa tu información");</script>';
+            echo '<script>window.location.href="EditarInfoAdmin.php"</script>';
+
+        }else if($estadoRegistro == "Correo de Alumno ya registrado"){
+            echo '<script>alert("El correo que has ingresado ya ha sido registrado, revisa tu información");</script>';
+            echo '<script>window.location.href="EditarInfoAdmin.php"</script>';
+
+        }else if($estadoRegistro == "Boleta de Alumno ya registrada"){
             echo '<script>alert("La boleta que has ingresado ya ha sido registrada, revisa tu información");</script>';
-            echo '<script>window.location.href="EditarInfo.php"</script>';
+            echo '<script>window.location.href="EditarInfoAdmin.php"</script>';
 
         }
 
         
-    }else{
-        echo '<script>window.location.href="../Vista/Paginas/index.html"</script>';
     }
 
     
