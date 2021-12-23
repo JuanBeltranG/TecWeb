@@ -21,7 +21,6 @@ $conexion = new Conexion();
                 document.envia.submit()
             </script>";
 
-            $_SESSION["PermisoEdicion"] = false;
             unset($_SESSION['AlumnoSesion']);
             
 

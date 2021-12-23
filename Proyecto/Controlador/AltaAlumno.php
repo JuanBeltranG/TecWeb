@@ -20,8 +20,6 @@ $conexion = new Conexion();
             <script language='JavaScript'>
                 document.envia.submit()
             </script>";
-
-            $_SESSION["PermisoEdicion"] = false;
             unset($_SESSION['AlumnoSesion']);
             session_destroy();
 
@@ -33,10 +31,12 @@ $conexion = new Conexion();
             echo '<script>window.location.href="EditarInfo.php"</script>';
 
         }else if($estadoRegistro == "Correo de Alumno ya registrado"){
+            $_SESSION["PermisoEdicion"] = true;
             echo '<script>alert("El correo que has ingresado ya ha sido registrado, revisa tu información");</script>';
             echo '<script>window.location.href="EditarInfo.php"</script>';
 
         }else if($estadoRegistro == "Boleta de Alumno ya registrada"){
+            $_SESSION["PermisoEdicion"] = true;
             echo '<script>alert("La boleta que has ingresado ya ha sido registrada, revisa tu información");</script>';
             echo '<script>window.location.href="EditarInfo.php"</script>';
 
